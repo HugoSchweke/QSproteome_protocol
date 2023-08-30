@@ -40,12 +40,12 @@ Nclash_res_int = length(unique(CONTACTS$res1[CONTACTS$dmin < 2 & (CONTACTS$chain
 
 ################ Parsing 3d complex to get all the contacts ####################
 
-mydb = dbConnect(MySQL(), user='elevy', password='Mysql1!', dbname='3dcomplexV0', host='els20.weizmann.ac.il')
-TMPall = dbGetQuery(mydb, paste0("SELECT chain1, chain2, res1, res2 from res_contact where code = '", CODE, "'"))
-TMPplddt = dbGetQuery(mydb, paste0("SELECT chain, resnum, bfact from residue where code = '", CODE, "' order by chain, resnum"))
-
-TMPall$resid1 = paste(TMPall$chain1, TMPall$res1, sep = "_")
-TMPall$resid2 = paste(TMPall$chain2, TMPall$res2, sep = "_")
+# mydb = dbConnect(MySQL(), user='elevy', password='Mysql1!', dbname='3dcomplexV0', host='els20.weizmann.ac.il')
+# TMPall = dbGetQuery(mydb, paste0("SELECT chain1, chain2, res1, res2 from res_contact where code = '", CODE, "'"))
+# TMPplddt = dbGetQuery(mydb, paste0("SELECT chain, resnum, bfact from residue where code = '", CODE, "' order by chain, resnum"))
+# 
+# TMPall$resid1 = paste(TMPall$chain1, TMPall$res1, sep = "_")
+# TMPall$resid2 = paste(TMPall$chain2, TMPall$res2, sep = "_")
 
 
 #################### READ PDB FILE ########################
@@ -286,7 +286,11 @@ cat("dimer_proba_pae3` =",round(proba.pae3,5),",
 
 
 ## 4- A file with X column for all the PAE score etc
-
+df_towrite = data.frame(PAE1 = PAE1,
+                        PAE2 = PAE2,
+                        PAE3 = PAE3,
+                        PAE_interface = ct.score2,
+                        dimer_proba = round(proba.all,5))
 
 
 # Find and close all connections to database (cannot have more than 16 connections per session)
@@ -295,4 +299,3 @@ all_cons <- dbListConnections(MySQL())
 for(con in all_cons) {
   dbDisconnect(con) 
 }
-
