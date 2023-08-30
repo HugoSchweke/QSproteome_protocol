@@ -21,12 +21,11 @@ CODE = "Q8WV44_V1_5"
 
 ###################### READ JSON FILE ##########################
 
-JSONFILE = "/media/elusers/users/hugo/15_alphafold/37_revision_Cell/rank_2_model_5_ptm_seed_0_pae.json.bz2"
+JSONFILE = "/media/elusers/users/hugo/15_alphafold/37_revision_Cell/QSproteome_protocol/data/Q8WV44_rank_2_model_5_ptm_seed_0_pae.json.bz2"
 
 #################### READ CONTACTS FILE ########################
 
-CONTACTS = read.table("/media/elusers/users/hugo/15_alphafold/37_revision_Cell/test_FULL.txt")
-# CONTACTS = CONTACTS[,c(2:5)]
+CONTACTS = read.table("/media/elusers/users/hugo/15_alphafold/37_revision_Cell/QSproteome_protocol/data/Q8WV44_V1_5_FULL_CONTACTS.txt")
 colnames(CONTACTS) = c("code", "chain1", "chain2", "res1", "res2", 
                        "resname1", "resname2", "n_contacts", "dmin", "dmax", "davg")
 CONTACTS$resid1 = paste(CONTACTS$chain1, CONTACTS$res1, sep = "_")
@@ -40,11 +39,7 @@ Nclash_res = length(unique(CONTACTS$res1[CONTACTS$dmin < 2]))
 Nclash_res_int = length(unique(CONTACTS$res1[CONTACTS$dmin < 2 & (CONTACTS$chain1 != CONTACTS$chain2)]))
 
 ################ Parsing 3d complex to get all the contacts ####################
-# protcode = CODE
-# 
-#'Q99550_V1_2'#P06778_V1_1'
-## P48454_V2_4
-#protcode = 'A0A0H3JBT0_V1_3' ##P38215_V1_4'
+
 mydb = dbConnect(MySQL(), user='elevy', password='Mysql1!', dbname='3dcomplexV0', host='els20.weizmann.ac.il')
 TMPall = dbGetQuery(mydb, paste0("SELECT chain1, chain2, res1, res2 from res_contact where code = '", CODE, "'"))
 TMPplddt = dbGetQuery(mydb, paste0("SELECT chain, resnum, bfact from residue where code = '", CODE, "' order by chain, resnum"))
@@ -106,27 +101,6 @@ data.diso = data.frame(chain = pdb_dataframe_plddt$chain,
 data.all.diso = merge(data.diso, res.to.update, by = c("chain", "resnum"), all.x = TRUE)
 data.all.diso[is.na(data.all.diso$nodiso3), "nodiso3"] = FALSE
 
-# #cpt = 0
-# tmp=dbBegin(mydb)
-# start_time <- Sys.time()
-# for (i in 1:nrow(data.all.diso)) {
-#   res = data.all.diso[i,]
-#   ## Updates the residue table with those indexes new columns called 
-#   ## nodiso1 (index.nodiso), nodiso2 (index.nodiso75), nodiso3 (the new one)
-#   ##update.query = dbGetQuery(mydb,
-#   update.query = dbSendStatement(mydb,
-#                                  paste0("UPDATE residue set nodiso1=", res$nodiso1,", nodiso2 =", res$nodiso2, ", nodiso3 = ", res$nodiso3,
-#                                         " where code = '", protcode,"' and chain = '", res$chain,"' and resnum = '", res$resnum, "'"))
-# }
-# tmp=dbCommit(mydb)
-# end_time <- Sys.time()
-#end_time- start_time
-# Find and close all connections to database (cannot have more than 16 connections per session)
-#all_cons <- dbListConnections(MySQL()) 
-#for(con in all_cons) {
-# tmp=dbDisconnect(mydb) 
-#}
-
 ################################## PART PAE #####################################
 
 mydb = dbConnect(MySQL(), user='elevy', password='Mysql1!', dbname='3dcomplexV0', host='els20.weizmann.ac.il')
@@ -161,8 +135,6 @@ res.diso3.Ba = paste0(res_diso3a[!isA,1],res_diso3a[!isA,2])
 
 
 n_res_in_contact = length( unique(c(res_in_contact[,1],res_in_contact[,2])))
-# n_res_in_contact = length( unique(c(CONTACTS[,1],CONTACTS[,2])))
-
 
 res_in_contact_diso1 = 
   CONTACTS$res1 %in% res_diso1$resnum[res_diso1$chain==CONTACTS$chain1[1]] &
@@ -253,41 +225,14 @@ if(file.exists(JSONFILE)){
   ### pae_cplx4
   ct.score2 = 50
   if(nrow(CONTACTS)>5){
-    
-    # contacts.Aa = paste0(TMPall[,1],TMPall[,3])
-    # contacts.Bb = paste0(TMPall[,2],TMPall[,4])
-    # contacts.Aa = paste0(TMPall[,3],TMPall[,1])
-    # contacts.Bb = paste0(TMPall[,4],TMPall[,2])
+
     contacts.A = paste0(CONTACTS[,"res1"],CONTACTS[,"chain1"])
     contacts.B = paste0(CONTACTS[,"res2"],CONTACTS[,"chain2"])
     
     ct.score2 = round(
       (mean(mat[ contacts.A, contacts.B ])+mean(mat[ contacts.B, contacts.A ]))/2
       ,2)
-    # ct.score2bis = round(
-    #   (mean(mat[ contacts.Aa, contacts.Bb ])+mean(mat[ contacts.Bb, contacts.Aa ]))/2
-    #   ,2)
   }    
-  #mat2=0*mat
-  #mat2[ unique(res_in_contact$res1), unique(PROT.L+res_in_contact$res2) ]=1
-#   
-#   UPDATE = paste0("UPDATE complex SET pae_mono =",MONO.mean,", pae_mono3 =",MONO.3.mean,", pae_cplx=",
-#                   DIM.mean,", pae_cplx1=",PAE1,", pae_cplx2=",PAE2,", pae_cplx3=",PAE3,", pae_cplx4=",ct.score2,
-#                   ", n_res_intf=",n_res_in_contact,
-#                   ", n_con_intf_diso1=",sum(res_in_contact_diso1),
-#                   ", n_con_intf_diso2=",sum(res_in_contact_diso2),
-#                   ", n_con_intf_diso3=",sum(res_in_contact_diso3),
-#                   ", n_con_intf=",nrow(res_in_contact)," WHERE code = '",CODE,"'")
-#   DATA = dbSendQuery(mydb, UPDATE)
-#   
-# } else {
-#   UPDATE = paste0("UPDATE complex SET pae_mono =100, pae_mono3=100, pae_cplx=100, pae_cplx1=100, pae_cplx2=100, pae_cplx3=100, pae_cplx4=100",
-#                   ", n_res_intf=",n_res_in_contact,
-#                   ", n_con_intf_diso1=",0,
-#                   ", n_con_intf_diso2=",0,
-#                   ", n_con_intf_diso3=",0,
-#                   ", n_con_intf=",nrow(res_in_contact)," WHERE code = '",CODE,"'")
-#   DATA = dbSendQuery(mydb, UPDATE)    
 }
 
 
@@ -330,19 +275,19 @@ cat("dimer_proba_pae3` =",round(proba.pae3,5),",
     `dimer_proba_pae4_con3`=",round(proba.pae4.con3,5), ", 
     `dimer_proba_max`=",round(proba.all,5), "\n")
 
-# UPDATE = paste0("UPDATE complex SET `dimer_proba_pae3` =",round(proba.pae3,5),", `dimer_proba_pae4`=",round(proba.pae4,5),
-#                 ", `dimer_proba_con3`=",round(proba.con3,5),", `dimer_proba_repre`=",round(proba.repre,5),
-#                 ", `dimer_proba_pae4_con3`=",round(proba.pae4.con3,5),
-#                 ", `dimer_proba_max`=",round(proba.all,5),
-#                 " WHERE code = '",CODE,"'")
-# 
-# DATA = dbSendQuery(mydb, UPDATE)
-
 #### THEN we write everything:
 ## 1- pdb file model nodiso1/2/3
+
+
 ## 2- list info per residue -> nodiso mainly
-## 3- Contacts file
+
+
+## 3- Contacts file -> ok already done at previous step
+
+
 ## 4- A file with X column for all the PAE score etc
+
+
 
 # Find and close all connections to database (cannot have more than 16 connections per session)
 all_cons <- dbListConnections(MySQL()) 
