@@ -26,7 +26,7 @@ if (!-d $OUTPATH) {
     print "Directory already exists.\n";
 }
 
-require("/media/elusers/users/hugo/15_alphafold/37_revision_Cell/functions_get_contacts.pm");
+require("/media/elusers/users/hugo/15_alphafold/37_revision_Cell/QSproteome_protocol/functions_get_contacts.pm");
 
 ### STEP 1
 ## Calculate the contacts in the model
@@ -38,6 +38,9 @@ process_contacts(@PDBFILES, "$OUTPATH/$CODE", 1);
 #### STEP 2
 ### Calculate nodiso1, 2, 3 
 my $CONTACTFILE = "$OUTPATH/$CODE"."_FULL.txt";
-print "$CONTACTFILE\n";
-#system("Rscript process_and_analyze_AF_model.R $PDBFILE $JSON $CONTACTFILE $OUTPATH")
+print "PDBFILE: $PDBFILE\n";
+print "JSON: $JSON\n";
+print "CONTACTFILE: $CONTACTFILE\n";
+print "OUTPATH: $OUTPATH\n";
+system("Rscript process_and_analyze_AF_model.R $PDBFILE $JSON $CONTACTFILE $OUTPATH")
 
