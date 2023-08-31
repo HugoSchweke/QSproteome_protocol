@@ -8,7 +8,7 @@ my $OUTPATH = $ARGV[2];
 
 # Extract pdb id
 my $CODE = (fileparse($PDBFILE, qr/\.[^.]*/))[0];
-print "code: $CODE";
+print "code: $CODE\n";
 
 # Check if the output directory exists
 if (!-d $OUTPATH) {
@@ -42,5 +42,5 @@ print "PDBFILE: $PDBFILE\n";
 print "JSON: $JSON\n";
 print "CONTACTFILE: $CONTACTFILE\n";
 print "OUTPATH: $OUTPATH\n";
-system("Rscript process_and_analyze_AF_model.R $PDBFILE $JSON $CONTACTFILE $OUTPATH")
+system("Rscript process_and_analyze_AF_model.R $CODE $JSON $CONTACTFILE $OUTPATH")
 
