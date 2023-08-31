@@ -15,17 +15,14 @@ suppressMessages(library(rjson))
 # CODE = args[1] 
 # JSONFILE = args[2]
 # CONTACTS = args[3]
+# OUTPATH = args[4]
 
 # CODE = "/media/elusers/users/hugo/15_alphafold/37_revision_Cell/Q8WV44_V1_5.pdb"
 CODE = "Q8WV44_V1_5"
+JSONFILE = "data/Q8WV44_rank_2_model_5_ptm_seed_0_pae.json.bz2"
+CONTACTS = read.table("data/Q8WV44_V1_5_FULL_CONTACTS.txt")
+OUTPATH = "outpath/"
 
-###################### READ JSON FILE ##########################
-
-JSONFILE = "/media/elusers/users/hugo/15_alphafold/37_revision_Cell/QSproteome_protocol/data/Q8WV44_rank_2_model_5_ptm_seed_0_pae.json.bz2"
-
-#################### READ CONTACTS FILE ########################
-
-CONTACTS = read.table("/media/elusers/users/hugo/15_alphafold/37_revision_Cell/QSproteome_protocol/data/Q8WV44_V1_5_FULL_CONTACTS.txt")
 colnames(CONTACTS) = c("code", "chain1", "chain2", "res1", "res2", 
                        "resname1", "resname2", "n_contacts", "dmin", "dmax", "davg")
 CONTACTS$resid1 = paste(CONTACTS$chain1, CONTACTS$res1, sep = "_")
@@ -38,15 +35,6 @@ Nclash_ct_int = sum(CONTACTS$dmin < 2 & (CONTACTS$chain1 != CONTACTS$chain2))
 Nclash_res = length(unique(CONTACTS$res1[CONTACTS$dmin < 2]))
 Nclash_res_int = length(unique(CONTACTS$res1[CONTACTS$dmin < 2 & (CONTACTS$chain1 != CONTACTS$chain2)]))
 
-################ Parsing 3d complex to get all the contacts ####################
-
-# mydb = dbConnect(MySQL(), user='elevy', password='Mysql1!', dbname='3dcomplexV0', host='els20.weizmann.ac.il')
-# TMPall = dbGetQuery(mydb, paste0("SELECT chain1, chain2, res1, res2 from res_contact where code = '", CODE, "'"))
-# TMPplddt = dbGetQuery(mydb, paste0("SELECT chain, resnum, bfact from residue where code = '", CODE, "' order by chain, resnum"))
-# 
-# TMPall$resid1 = paste(TMPall$chain1, TMPall$res1, sep = "_")
-# TMPall$resid2 = paste(TMPall$chain2, TMPall$res2, sep = "_")
-
 
 #################### READ PDB FILE ########################
 
@@ -56,7 +44,6 @@ pdb_dataframe <- as.data.frame(pdb_data$atom)
 pdb_dataframe_plddt = pdb_dataframe[!duplicated(pdb_dataframe[,c("chain","resno","b")]), c("chain","resno","b")]
 colnames(pdb_dataframe_plddt) = c("chain", "resnum", "bfact")
 
-###########################################################
 
 #################### Part getting contact matrix ########################
 indices = paste(pdb_dataframe_plddt$chain, pdb_dataframe_plddt$resnum, sep = "_")
@@ -103,13 +90,7 @@ data.all.diso[is.na(data.all.diso$nodiso3), "nodiso3"] = FALSE
 
 ################################## PART PAE #####################################
 
-mydb = dbConnect(MySQL(), user='elevy', password='Mysql1!', dbname='3dcomplexV0', host='els20.weizmann.ac.il')
-
-res_in_contact = dbGetQuery(mydb, paste0("SELECT res1, res2, chain1, chain2 FROM res_contact WHERE code = '",CODE,"' AND chain1 != chain2"))
-
-res_diso1a = dbGetQuery(mydb, paste0("SELECT resnum, chain FROM residue WHERE code = '",CODE,"' AND nodiso1=1"))
-res_diso2a = dbGetQuery(mydb, paste0("SELECT resnum, chain FROM residue WHERE code = '",CODE,"' AND nodiso2=1"))
-res_diso3a = dbGetQuery(mydb, paste0("SELECT resnum, chain FROM residue WHERE code = '",CODE,"' AND nodiso3=1"))
+res_in_contact = CONTACTS[,c("res1", "res2", "chain1", "chain2")]
 
 res_diso1 = data.all.diso[data.all.diso$nodiso1,c("resnum", "chain")]
 res_diso2 = data.all.diso[data.all.diso$nodiso2,c("resnum", "chain")]
@@ -126,13 +107,6 @@ res.diso2.B = paste0(res_diso2[!isA,1],res_diso2[!isA,2])
 isA = res_diso3[,2]=="A"
 res.diso3.A = paste0(res_diso3[isA,1],res_diso3[isA,2])
 res.diso3.B = paste0(res_diso3[!isA,1],res_diso3[!isA,2])
-
-####################### TEST ######################
-isA = res_diso3a[,2]=="A"
-res.diso3.Aa = paste0(res_diso3a[isA,1],res_diso3a[isA,2])
-res.diso3.Ba = paste0(res_diso3a[!isA,1],res_diso3a[!isA,2])
-###################################################
-
 
 n_res_in_contact = length( unique(c(res_in_contact[,1],res_in_contact[,2])))
 
@@ -292,10 +266,8 @@ df_towrite = data.frame(PAE1 = PAE1,
                         PAE_interface = ct.score2,
                         dimer_proba = round(proba.all,5))
 
+pdb_nodiso1 =
+pdb_nodiso2 =
+pdb_nodiso3 =
 
-# Find and close all connections to database (cannot have more than 16 connections per session)
-all_cons <- dbListConnections(MySQL()) 
-
-for(con in all_cons) {
-  dbDisconnect(con) 
-}
+write.csv(df_towrite, paste0(OUTPATH, "/", CODE, "_probability_scores.csv"))
