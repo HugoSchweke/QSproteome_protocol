@@ -6,22 +6,25 @@ suppressMessages(library(stringr))
 suppressMessages(library(bio3d))
 suppressMessages(library(rjson))
 
-# args = commandArgs(trailingOnly = TRUE)
+args = commandArgs(trailingOnly = TRUE)
 
-# if (length(args)!=2) {
-#   stop("One arguments expected --- USAGE: Rscript 0000_remove_disorder.R CODE CONTACTS", call.=FALSE)
-# }
+if (length(args)!=4) {
+  stop("One arguments expected --- USAGE: Rscript 0000_remove_disorder.R CODE JSONFILE CONTACTS OUTPATH", call.=FALSE)
+}
 
-# CODE = args[1] 
-# JSONFILE = args[2]
-# CONTACTS = args[3]
-# OUTPATH = args[4]
+CODE = args[1] 
+JSONFILE = args[2]
+CONTACTFILE = args[3]
+CONTACTS = read.table(CONTACTFILE)
 
-# CODE = "/media/elusers/users/hugo/15_alphafold/37_revision_Cell/Q8WV44_V1_5.pdb"
-CODE = "Q8WV44_V1_5"
-JSONFILE = "data/Q8WV44_rank_2_model_5_ptm_seed_0_pae.json.bz2"
-CONTACTS = read.table("data/Q8WV44_V1_5_FULL_CONTACTS.txt")
-OUTPATH = "outpath/"
+OUTPATH = args[4]
+
+#CODE = "Q8WV44_V1_5"
+#JSONFILE = "data/Q8WV44_rank_2_model_5_ptm_seed_0_pae.json.bz2"
+#CONTACTS = read.table("data/Q8WV44_V1_5_FULL_CONTACTS.txt")
+#OUTPATH = "outpath/"
+
+print(head(CONTACTS))
 
 colnames(CONTACTS) = c("code", "chain1", "chain2", "res1", "res2", 
                        "resname1", "resname2", "n_contacts", "dmin", "dmax", "davg")
@@ -266,26 +269,26 @@ df_towrite = data.frame(PAE1 = PAE1,
                         PAE_interface = ct.score2,
                         dimer_proba = round(proba.all,5))
 
-# Step 3: Remove the identified residues
-res_torm_diso1 = data.all.diso[data.all.diso$nodiso1 == F,c("resnum", "chain")]
-res_torm_diso1 = paste(res_torm_diso1$chain, res_torm_diso1$resnum, sep="")
-atom.select(pdb_data, resid = as.character(res_torm_diso1$resnum), chain = res_torm_diso1$chain)
-
-res_torm_diso2 = data.all.diso[data.all.diso$nodiso2 == F,c("resnum", "chain")]
-res_torm_diso2 = paste(res_torm_diso2$chain, res_torm_diso2$resnum, sep="")
-
-res_torm_diso3 = data.all.diso[data.all.diso$nodiso3 == F,c("resnum", "chain")]
-res_torm_diso3 = paste(res_torm_diso3$chain, res_torm_diso3$resnum, sep="")
-
-# pdb_nodiso1 <- trim.pdb(pdb_data, trim = res_torm_diso1, multi = TRUE)
-# pdb_cleaned <- pdb_data[!(paste0(pdb_data$atom$chain, pdb_data$atom$resno) %in% res_torm_diso1), ]
+# # Step 3: Remove the identified residues
+# res_torm_diso1 = data.all.diso[data.all.diso$nodiso1 == F,c("resnum", "chain")]
+# res_torm_diso1 = paste(res_torm_diso1$chain, res_torm_diso1$resnum, sep="")
+# atom.select(pdb_data, resid = as.character(res_torm_diso1$resnum), chain = res_torm_diso1$chain)
 # 
-# write.pdb(pdb_nodiso1, paste0(OUTPATH, "/", CODE, "_nodiso1.pdb"))
+# res_torm_diso2 = data.all.diso[data.all.diso$nodiso2 == F,c("resnum", "chain")]
+# res_torm_diso2 = paste(res_torm_diso2$chain, res_torm_diso2$resnum, sep="")
 # 
-# pdb_nodiso2 = trim.pdb(pdb_data, trim = res_torm_diso2, multi = TRUE)
-# write.pdb(pdb_nodiso2, paste0(OUTPATH, "/", CODE, "_nodiso2.pdb"))
+# res_torm_diso3 = data.all.diso[data.all.diso$nodiso3 == F,c("resnum", "chain")]
+# res_torm_diso3 = paste(res_torm_diso3$chain, res_torm_diso3$resnum, sep="")
 # 
-# pdb_nodiso3 = trim.pdb(pdb_data, trim = res_torm_diso3, multi = TRUE)
-# write.pdb(pdb_nodiso3, paste0(OUTPATH, "/", CODE, "_nodiso3.pdb"))
+# # pdb_nodiso1 <- trim.pdb(pdb_data, trim = res_torm_diso1, multi = TRUE)
+# # pdb_cleaned <- pdb_data[!(paste0(pdb_data$atom$chain, pdb_data$atom$resno) %in% res_torm_diso1), ]
+# # 
+# # write.pdb(pdb_nodiso1, paste0(OUTPATH, "/", CODE, "_nodiso1.pdb"))
+# # 
+# # pdb_nodiso2 = trim.pdb(pdb_data, trim = res_torm_diso2, multi = TRUE)
+# # write.pdb(pdb_nodiso2, paste0(OUTPATH, "/", CODE, "_nodiso2.pdb"))
+# # 
+# # pdb_nodiso3 = trim.pdb(pdb_data, trim = res_torm_diso3, multi = TRUE)
+# # write.pdb(pdb_nodiso3, paste0(OUTPATH, "/", CODE, "_nodiso3.pdb"))
 
 write.csv(df_towrite, paste0(OUTPATH, "/", CODE, "_probability_scores.csv"))
