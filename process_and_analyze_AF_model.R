@@ -5,6 +5,11 @@ suppressMessages(library(igraph))
 suppressMessages(library(stringr))
 suppressMessages(library(bio3d))
 suppressMessages(library(rjson))
+suppressMessages(library(sys))
+
+# Get the path to the currently executing R script
+script_path <- sys.frame(sys.nframe())$ofile
+print(script_path)
 
 
 trim_pdb <- function(df, listtorm) {
@@ -32,6 +37,17 @@ trim_pdb <- function(df, listtorm) {
   return(atom_records)
 }
 
+# Get the command line arguments
+args <- commandArgs(trailingOnly = FALSE)
+
+# Find the script argument, which is usually the last one
+script_arg <- tail(args, n = 1)
+
+# Extract the script path
+script_path <- gsub("^--file=", "", script_arg)
+
+# Print the script path
+cat("Script Path:", script_path, "\n")
 
 # args = commandArgs(trailingOnly = TRUE)
 # 
@@ -292,7 +308,7 @@ cat("dimer_proba_pae3` =",round(proba.pae3,5),",
     `dimer_proba_max`=",round(proba.all,5), "\n")
 
 #### THEN we write everything:
-## 1- pdb file model nodiso1/2/3
+## 1- Write pdb file model nodiso1/2/3
 res_torm_diso1 = data.all.diso[data.all.diso$nodiso1 == F,c("resnum", "chain")]
 res_torm_diso1 = paste(res_torm_diso1$chain, res_torm_diso1$resnum, sep="")
 pdbnodiso1 = unlist(trim_pdb(pdb_dataframe, res_torm_diso1))
@@ -308,30 +324,16 @@ res_torm_diso3 = paste(res_torm_diso3$chain, res_torm_diso3$resnum, sep="")
 pdbnodiso3 = unlist(trim_pdb(pdb_dataframe, res_torm_diso3))
 writeLines(pdbnodiso3, con = paste0(OUTPATH, "/", CODE, "_nodiso3.pdb"))
 
-## 2- list info per residue -> nodiso mainly
+## 2- Write list info per residue -> nodiso info
+write.csv(data.all.diso, paste0(OUTPATH, "/", CODE, "_diso_info.csv"),
+          quote = F, row.names = F)
 
-
-## 3- Contacts file -> ok already done at previous step
-
-
-## 4- A file with X column for all the PAE score etc
+## 3- A file with X column for all the PAE score etc
 df_towrite = data.frame(PAE1 = PAE1,
                         PAE2 = PAE2,
                         PAE3 = PAE3,
                         PAE_interface = ct.score2,
                         dimer_proba = round(proba.all,5))
 
-
-
-# pdb_nodiso1 <- trim.pdb(pdb_data, trim = res_torm_diso1, multi = TRUE)
-# pdb_cleaned <- pdb_data[!(paste0(pdb_data$atom$chain, pdb_data$atom$resno) %in% res_torm_diso1), ]
-#
-# write.pdb(pdb_nodiso1, paste0(OUTPATH, "/", CODE, "_nodiso1.pdb"))
-#
-# pdb_nodiso2 = trim.pdb(pdb_data, trim = res_torm_diso2, multi = TRUE)
-# write.pdb(pdb_nodiso2, paste0(OUTPATH, "/", CODE, "_nodiso2.pdb"))
-#
-# pdb_nodiso3 = trim.pdb(pdb_data, trim = res_torm_diso3, multi = TRUE)
-# write.pdb(pdb_nodiso3, paste0(OUTPATH, "/", CODE, "_nodiso3.pdb"))
-
-write.csv(df_towrite, paste0(OUTPATH, "/", CODE, "_probability_scores.csv"))
+write.csv(df_towrite, paste0(OUTPATH, "/", CODE, "_probability_scores.csv"),
+          quote = F, row.names = F)
