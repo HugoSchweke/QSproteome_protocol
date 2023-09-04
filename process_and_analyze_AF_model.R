@@ -282,14 +282,17 @@ cat("dimer_proba_pae3` =",round(proba.pae3,5),",
 res_torm_diso1 = data.all.diso[data.all.diso$nodiso1 == F,c("resnum", "chain")]
 res_torm_diso1 = paste(res_torm_diso1$chain, res_torm_diso1$resnum, sep="")
 pdbnodiso1 = unlist(trim_pdb(pdb_dataframe, res_torm_diso1))
+writeLines(pdbnodiso1, con = paste0(OUTPATH, "/", CODE, "_nodiso1.pdb"))
 
 res_torm_diso2 = data.all.diso[data.all.diso$nodiso2 == F,c("resnum", "chain")]
 res_torm_diso2 = paste(res_torm_diso2$chain, res_torm_diso2$resnum, sep="")
 pdbnodiso2 = unlist(trim_pdb(pdb_dataframe, res_torm_diso2))
+writeLines(pdbnodiso2, con = paste0(OUTPATH, "/", CODE, "_nodiso2.pdb"))
 
 res_torm_diso3 = data.all.diso[data.all.diso$nodiso3 == F,c("resnum", "chain")]
 res_torm_diso3 = paste(res_torm_diso3$chain, res_torm_diso3$resnum, sep="")
 pdbnodiso3 = unlist(trim_pdb(pdb_dataframe, res_torm_diso3))
+writeLines(pdbnodiso3, con = paste0(OUTPATH, "/", CODE, "_nodiso3.pdb"))
 
 ## 2- list info per residue -> nodiso mainly
 
