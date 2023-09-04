@@ -161,7 +161,21 @@ if(is.na(n_contact)) {
 if(file.exists(JSONFILE)){
   
   tmp2 = fromJSON(file=JSONFILE)
-  mat = matrix(ncol=length(tmp2[[1]]$residue1)^0.5,nrow=length(tmp2[[1]]$residue1)^0.5,data=tmp2[[1]]$distance, byrow=TRUE)
+  tmp3 = fromJSON(file="/media/elusers/users/hugo/15_alphafold/34_AWS/ECK12/06_unzip_files/P45756/P45756_scores_rank_001_alphafold2_multimer_v3_model_2_seed_000.json")
+  
+  ## Check if the json format is old or new version
+  if ("pae" %in% names(tmp2)) { ## new version
+    mat = matrix(ncol=length(tmp2$pae),
+                 nrow=length(tmp2$pae),
+                 data=unlist(tmp2$pae), 
+                 byrow=TRUE)
+  } else { ## old version
+    mat = matrix(ncol=length(tmp2[[1]]$residue1)^0.5,
+                 nrow=length(tmp2[[1]]$residue1)^0.5,
+                 data=tmp2[[1]]$distance, 
+                 byrow=TRUE)
+  }
+
   L = dim(mat)[1]    
   PROT.L = L/2
   chA = paste0(1:PROT.L,"A")
