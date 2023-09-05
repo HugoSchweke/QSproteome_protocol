@@ -101,7 +101,7 @@ python3 -m pip install SURFMAP-2.0.0.zip # (or .tar.gz)
 </div>
 <br>
 
-SURFMAP accepts as input either a *PDB file* or a *text file in a SURFMAP-specific matrix format*.
+QSPROTEOME needs in input an AlphaFold model of a homodimer in pdb format, as well as the associated json file provided by AF.
 <br>
 <br>
 
@@ -112,8 +112,6 @@ SURFMAP accepts as input either a *PDB file* or a *text file in a SURFMAP-specif
 The matrix text file contains all information about each projected surface residue and their associated feature value. As the above figure shows, this text file is the direct input for the last step of the SURFMAP workflow as it is read to generate the 2D map projection.
 <br>
 <br>
-
-[Using a text file in a SURFMAP-specific matrix format as input](#from-a-surfmap-matrix-file) represents a special case that could be useful if the user wants to generate a 2D map from an internally pre-processed matrix, such as to normalize or average with other matrices.
 
 <details>
 <summary>Example of a table of contacts format (.txt)</summary>
@@ -132,7 +130,16 @@ Q8WV44_V1_5 B B 13 16 T E 1 3.502 3.502 3.502
 </pre>
 </details>
 
-
+- code = code of the pdb file in input
+- chain1 = chain id of the first residue
+- chain2 = chain id of the second residue
+- res1 = residue number of the first residue
+- res2 = residue number of the second residue
+- rescode1 = one-letter code of the first residue
+- rescode2 = one-letter code of the second residue
+- d1 = distance 1
+- d2 = distance 2
+- d3 = distance 3
 
 # Usage of QSPROTEOME
 [Go to the top](#Table-of-contents)
