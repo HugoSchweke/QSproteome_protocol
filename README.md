@@ -116,7 +116,8 @@ The matrix text file contains all information about each projected surface resid
 <details>
 <summary>Example of a table of contacts format (.txt)</summary>
 
-<pre> code chain1 chain2 res1 res2 rescode1 rescode2
+<pre> 
+code chain1 chain2 res1 res2 rescode1 rescode2 d1 d2 d3
 Q8WV44_V1_5 B B 9 13 N T 2 2.806 3.287 3.046
 Q8WV44_V1_5 B B 9 12 N Q 1 3.172 3.172 3.172
 Q8WV44_V1_5 B B 10 13 P T 3 3.015 3.243 3.125
