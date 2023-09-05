@@ -229,3 +229,10 @@ Moreover, if you use the pipeline of the homomer structure prediction in your re
 [Go to the top](#Table-of-contents)
 
 <a id="ref-1"></a>
+
+> (1) Pagès, Guillaume, Elvira Kinzina, and Sergei Grudinin. 2018. “Analytical Symmetry Detection in Protein Assemblies. I. Cyclic Symmetries.” Journal of Structural Biology 203 (2): 142–48.
+
+
+<a id="ref-2"></a>
+
+> (2) Williams, Christopher J., Jeffrey J. Headd, Nigel W. Moriarty, Michael G. Prisant, Lizbeth L. Videau, Lindsay N. Deis, Vishal Verma, et al. 2018. “MolProbity: More and Better Reference Data for Improved All-Atom Structure Validation.” Protein Science: A Publication of the Protein Society 27 (1): 293–315.
