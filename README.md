@@ -1,6 +1,5 @@
 # QSproteome_protocol
 This repository contains all the necessary script and data to calculate everything from input pdb model + json file to dimer probability.
-The pipeline is based on perl and R.
 
 # Table of contents
 
@@ -16,9 +15,6 @@ The pipeline is based on perl and R.
 
 # Aims
 [Go to the top](#Table-of-contents)
-
-<div>
-<img src="./doc/images/TOC_Schweke_manuscript_revisions_forGitHub.png" width="60%" align="right"/>
 
 QSPROTEOME is a free standalone and easy-to-use command-line interface (CLI) software that detect homo-oligomerization from AlphaFold homodimeric predictions. The user can use the structure of these predictions to reconstruct full length AlphaFold homomeric complexes.
 </div>
