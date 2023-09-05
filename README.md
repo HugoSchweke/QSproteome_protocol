@@ -37,7 +37,7 @@ Requirements:
 <div>
 <img src="./doc/images/TOC_Schweke_manuscript_revisions_forGitHub.png" width="60%" align="right"/>
 
-SURFMAP is a free standalone and easy-to-use command-line interface (CLI) software that enables the fast and automated 2D projection of either predefined features of protein surface (electrostatic potential, Kyte-Doolittle hydrophobicity, Wimley-White hydrophobicity, stickiness and surface relief) or any descriptor encoded in the temperature factor column of a PDB file. The 2D maps computed by SURFMAP can be used to analyze and/or compare protein surface properties.
+QSPROTEOME is a free standalone and easy-to-use command-line interface (CLI) software that enables the fast and automated 2D projection of either predefined features of protein surface (electrostatic potential, Kyte-Doolittle hydrophobicity, Wimley-White hydrophobicity, stickiness and surface relief) or any descriptor encoded in the temperature factor column of a PDB file. The 2D maps computed by QSPROTEOME can be used to analyze and/or compare protein surface properties.
 </div>
 
 
@@ -46,7 +46,7 @@ SURFMAP is a free standalone and easy-to-use command-line interface (CLI) softwa
 
 ### Requirements
 
-SURFMAP is a CLI tool that requires a UNIX-based OS system. It is written in python (version 3.7), R (version 3.6). It relies on the already included MSMS software ([1](#ref-1)) and may optionally require APBS ([2](#ref-2)) if the user wants to perform electrostatics calculations.
+QSPROTEOME is a CLI tool that requires a UNIX-based OS system. It is written in perl (version 3.7), R (version 4.3.1) and bash. It relies on the already included MSMS software ([1](#ref-1)) and may optionally require APBS ([2](#ref-2)) if the user wants to perform electrostatics calculations.
 
 All those requirements (including APBS) are met in a [predefined Docker image](https://hub.docker.com/r/lopesi2bc/surfmap/tags) that we recommend the user to use. 
 
@@ -73,44 +73,9 @@ All those requirements (including APBS) are met in a [predefined Docker image](h
 > :bell: Please note that **whether you want to use the Docker image of SURFMAP or not, you will still need to [install the SURFMAP package](#How-to-install-SURFMAP)**. Indeed the package contains internal features that make the use of the Docker image totally transparent for the user who will not have to enter 'complex' commands for the connection of useful mounting points. In fact, the SURFMAP commands are almost exactly the same between the use of the docker image or not (see [here](#cmd_docker_or_not)).
 
 
-### Recommendation
-
-We strongly recommend that you install the SURFMAP package and its python dependencies in an isolated environment. Click in the section below for a short illustration on why and how to use an isolated environment.
-
-<details style="margin-left: 32px">
-<summary>How to use an isolated environment (recommended)</summary>
-<br>
-<p>
-By using an isolated environment you will avoid potential version conflicts between python libraries when working on different projects. Some of the most popular tools to work with isolated python environments are [virtualenv](https://pypi.org/project/virtualenv/), [pyenv](https://pypi.org/project/pyenv/), [pipenv](https://pypi.org/project/pipenv/). 
-</p>
-
-Below is an example on how to use [virtualenv](https://pypi.org/project/virtualenv/).
-
-#### 1. Install virtualenv
-```bash
-# upgrade pip to its latest version
-python3 -m pip install --upgrade pip
-
-# install virtualenv
-python3 -m pip install virtualenv
-```
-
-#### 2. Create and activate an isolated environment
-```bash
-# create an isolated environment named 'myenv' (to adapt)
-virtualenv myenv
-
-# activate your isolated environment
-source myenv/bin/activate
-```
-
-Once activated, any python library you'll install using pip will be installed in this isolated environment, and python will only have access to these packages.
-
-Once you're done working on your project, simply type `deactivate` to exit the environment.
-</details>
 
 
-## How to install SURFMAP
+## How to install QSPROTEOME
 [Go to the top](#Table-of-contents)
 
 First, make sure you meet the [system requirements](#requirements) outlined earlier and consider the [recommendation](#recommendation). Then, follow instructions described in option 1 or 2 if you're not interested in accessing/modifying the source code, otherwise prefer option 3. 
@@ -166,7 +131,7 @@ python3 -m pip install -e .
 [Go to the top](#Table-of-contents)
 
 
-### SURFMAP workflow: inputs/outputs
+### QSPROTEOME workflow: inputs/outputs
 
 <div align="center">
   <img src="./doc/images/surfmap_workflow.png" width="70%"/>
@@ -190,52 +155,31 @@ The matrix text file contains all information about each projected surface resid
 [Using a text file in a SURFMAP-specific matrix format as input](#from-a-surfmap-matrix-file) represents a special case that could be useful if the user wants to generate a 2D map from an internally pre-processed matrix, such as to normalize or average with other matrices.
 
 <details>
-<summary>Example of a SURFMAP-specific matrix format (.txt)</summary>
+<summary>Example of a table of contacts format (.txt)</summary>
 
-<pre>absc    ord     svalue  residues
-5       5       Inf     NA
-5       10      Inf     NA
-5       15      Inf     NA
-...
-5       80      Inf     GLU_120_A
-5       85      Inf     GLU_120_A, GLN_301_A
-5       90      Inf     GLN_301_A
-5       95      Inf     GLN_301_A
-5       100     Inf     GLN_301_A
-5       105     Inf     GLN_301_A
-...
-360	175	Inf	NA
-360	180	Inf	NA
+<pre> code chain1 chain2 res1 res2 rescode1 rescode2
+Q8WV44_V1_5 B B 9 13 N T 2 2.806 3.287 3.046
+Q8WV44_V1_5 B B 9 12 N Q 1 3.172 3.172 3.172
+Q8WV44_V1_5 B B 10 13 P T 3 3.015 3.243 3.125
+Q8WV44_V1_5 B B 10 14 P L 5 3.147 4.014 3.480
+Q8WV44_V1_5 B B 11 15 V Q 2 3.128 3.553 3.341
+Q8WV44_V1_5 B B 11 14 V L 4 3.182 3.670 3.502
+Q8WV44_V1_5 B B 12 15 Q Q 2 3.354 3.796 3.575
+Q8WV44_V1_5 B B 12 9 Q N 1 3.172 3.172 3.172
+Q8WV44_V1_5 B B 12 16 Q E 3 3.177 3.760 3.451
+Q8WV44_V1_5 B B 13 16 T E 1 3.502 3.502 3.502
 </pre>
 </details>
 
 
-### Calling SURFMAP with Docker or not
 
-Whether you want to use SURFMAP through a Docker or not, the commands are almost exactly the same. Indeed, in order to use the Docker image of SURFMAP, you will just have to add the CLI option **`--docker`**. If you want to use SURFMAP from an installation on your local OS, then simply remove this option. For example:
-
-<a id="cmd_docker_or_not"></a>
-
-```bash
-# a command that will run on a Docker container
-surfmap -pdb foo.pdb -tomap stickiness --docker
-
-# the same command that will run on your local OS
-surfmap -pdb foo.pdb -tomap stickiness
-```
-
-If the Docker image of SURFMAP is missing from your system, it will be automatically downloaded the first time you will execute a SURFMAP command.
-
-> :bell: The version of the SURFMAP Docker image used is the same as the version of SURFMAP you will have installed. You can check your current version with the command `surfmap -v`. Yet if you want to use [another version of the SURFMAP Docker image](https://hub.docker.com/r/lopesi2bc/surfmap/tags), you will have to set a `SURFMAP_DOCKER_VERSION` environment variable with a value corresponding to an available tag version (e.g. `export SURFMAP_DOCKER_VERSION=2.0.0`).
-
-
-# Usage of SURFMAP
+# Usage of QSPROTEOME
 [Go to the top](#Table-of-contents)
 
-Once you have [installed the SURFMAP package](#how-to-install-surfmap), you should be ready to use SURFMAP. 
+Once you have [installed the QSPROTEOME package](#how-to-install-surfmap), you should be ready to use SURFMAP. 
 
 #### The example directory
-To guide the user in the usage of SURFMAP, we will make use of files that you can find in the `example/` directory of SURFMAP. You can see where this directory is located on your machine with the following command:
+To guide the user in the usage of QSPROTEOME, we will make use of files that you can find in the `example/` directory of SURFMAP. You can see where this directory is located on your machine with the following command:
 
 ```bash
 python3 -c "import surfmap; print(surfmap.PATH_TO_EXAMPLES)"
@@ -244,7 +188,7 @@ python3 -c "import surfmap; print(surfmap.PATH_TO_EXAMPLES)"
 Please note that for all command examples illustrated below, we will make [use of the Docker image of SURFMAP](#use-surfmap-with-docker-or-not).
 
 
-#### SURFMAP options
+#### QSPROTEOME options
 
 <details>
 <summary>List of all SURFMAP options</summary>
@@ -359,17 +303,7 @@ A more realistic usage of this option would be to compute maps from your interna
 <summary>Example of a SURFMAP-specific matrix format (.txt)</summary>
 
 <pre>absc    ord     svalue  residues
-5       5       Inf     NA
-5       10      Inf     NA
-5       15      Inf     NA
-...
-5       80      Inf     GLU_120_A
-5       85      Inf     GLU_120_A, GLN_301_A
-5       90      Inf     GLN_301_A
-5       95      Inf     GLN_301_A
-5       100     Inf     GLN_301_A
-5       105     Inf     GLN_301_A
-...
+
 360	175	Inf	NA
 360	180	Inf	NA
 </pre>
@@ -467,7 +401,7 @@ The output file will have the basename of the PDB file given as input with the s
 # Contacts
 [Go to the top](#Table-of-contents)
 
-If you have any question regarding SURFMAP, you can contact us:
+If you have any question regarding QSPROTEOME, you can contact us:
 - [@emmanuel.levy@weizmann.ac.il](mailto:@emmanuel.levy@weizmann.ac.il) (project leader and original code author)
 - [@hugo.schweke@weizmann.ac.il](mailto:hugo.schweke@weizmann.ac.il) (original code author)
 
