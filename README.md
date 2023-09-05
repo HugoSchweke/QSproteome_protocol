@@ -136,9 +136,9 @@ Q8WV44_V1_5 B B 13 16 T E 1 3.502 3.502 3.502
 - res2 = residue number of the second residue
 - rescode1 = one-letter code of the first residue
 - rescode2 = one-letter code of the second residue
-- d1 = distance 1
-- d2 = distance 2
-- d3 = distance 3
+- dmin = distance 1
+- dmax = distance 2
+- davg = distance 3
  </pre>
 </details>
 
@@ -160,35 +160,14 @@ Please note that for all command examples illustrated below, we will make [use o
 #### QSPROTEOME options
 
 <details>
-<summary>List of all SURFMAP options</summary>
+<summary>List of all QSPROTEOME arguments</summary>
 
-<pre>usage: surfmap [-h] (-pdb PDB | -mat MAT | -v) -tomap TOMAP [-proj PROJ] [-res RES] [-rad RAD] [-d D] [-s S] [--nosmooth] [--png] [--keep]
-               [--docker] [--pqr PQR] [-ff FF] [-verbose VERBOSE]
+<pre>usage: QSPROTEOME [-h] (-pdb PDB | -json JSON)
 
 options:
   -h, --help        show this help message and exit
-  -pdb PDB          Path to a PDB file
-  -mat MAT          Input matrix. If the user gives an imput matrix, SURFMAP will directly compute a map from it.
-  -v, --version     Print the current version of SURFMAP.
-  -tomap TOMAP      Specific key of the feature to map. One of the following: stickiness, kyte_doolittle, wimley_white, electrostatics,
-                    circular_variance, bfactor, binding_sites, all.
-  -proj PROJ        Choice of the projection. Argument must be one of the following: flamsteed, mollweide, lambert. Defaults to flamsteed.
-  -res RES          File containing a list of residues to map on the projection. Expected format has the following space/tab separated column
-                    values: chainid resid resname
-  -rad RAD          Radius in Angstrom added to usual atomic radius (used for calculation solvent excluded surface). The higher the radius the
-                    smoother the surface. Defaults to 3.0
-  -d D              Output directory where all files will be written. Defaults to &apos;./output_SURFMAP_$pdb_$tomap&apos; with $pdb and $tomap based on
-                    -pdb and -tomap given values
-  -s S              Value defining the size of a grid cell. The value must be a multiple of 180. Defaults to 5.0
-  --nosmooth        If chosen, the resulted maps are not smoothed (careful: this option should be used only for discrete values!)
-  --png             If chosen, a map in png format is computed (default: only pdf format is generated)
-  --keep            If chosen, all intermediary files are kept in the output (default: only final text matrix and pdf map are kept)
-  --docker          If chosen, SURFMAP will be run on a docker container (requires docker installed).
-  --pqr PQR         Path to a PQR file used for electrostatics calculation. Option only available if &apos;-tomap electrosatics&apos; is requested.
-                    Defaults to None.
-  -ff FF            Force-field used by pdb2pqr for electrostatics calculation. One of the following: AMBER, CHARMM, PARSE, TYL06, PEOEPB,
-                    SWANSON. Defaults to CHARMM.
-  -verbose VERBOSE  Verbose level of the console log. 0 for silence, 1 for info level, 2 for debug level. Defaults to 1.
+  -pdb PDB          Path to an AlphaFold model PDB file. *required*
+  -json JSON        Path to the json file produced by AlphaFold along with the model. *required*
 </pre>
 </details>
 
