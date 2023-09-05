@@ -13,11 +13,6 @@ Requirements:
  general.pm : set of perl functions necessary for the contact calculations part.
   functions_get_contacts.pm  : perl functions to calculate
 
-# SURFMAP
-
-<div align="center">
-  <img src="./doc/images/toc_Schweke_SURFMAP_cmyk.png" width="80%"/>  
-</div>
 
 # Table of contents
 
