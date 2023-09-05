@@ -127,8 +127,6 @@ Q8WV44_V1_5 B B 12 15 Q Q 2 3.354 3.796 3.575
 Q8WV44_V1_5 B B 12 9 Q N 1 3.172 3.172 3.172
 Q8WV44_V1_5 B B 12 16 Q E 3 3.177 3.760 3.451
 Q8WV44_V1_5 B B 13 16 T E 1 3.502 3.502 3.502
-</pre>
-</details>
 
 - code = code of the pdb file in input
 - chain1 = chain id of the first residue
@@ -140,6 +138,8 @@ Q8WV44_V1_5 B B 13 16 T E 1 3.502 3.502 3.502
 - d1 = distance 1
 - d2 = distance 2
 - d3 = distance 3
+ </pre>
+</details>
 
 # Usage of QSPROTEOME
 [Go to the top](#Table-of-contents)
