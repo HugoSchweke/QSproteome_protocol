@@ -2,7 +2,7 @@ This directory contains all the output files after executing the first step of t
 
 It contains:
 
-### Q8WV44_V1_5_nodiso1.pdb: 
+## Q8WV44_V1_5_nodiso1.pdb: 
 
 example input pdb file (Q8WV44_V1_5.pdb) where residues with a pLDDT score below 40 are filtered out.
 
