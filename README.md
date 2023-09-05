@@ -19,11 +19,11 @@ Requirements:
 - [Aims](#Aims)
 - [Installation](#Installation)
 - [How it works](#How-it-works)
-- [Usage of SURFMAP](#Usage-of-QSPROTEOME)
+- [Usage of QSPROTEOME](#Usage-of-QSPROTEOME)
 - [Supporting the project](#Supporting-the-project)
 - [Contacts](#Contacts)
 - [Licence](#Licence)
-- [How to cite SURFMAP](#How-to-cite-QSPROTEOME)
+- [How to cite QSPROTEOME](#How-to-cite-QSPROTEOME)
 - [References](#References)
 
 # Aims
@@ -32,7 +32,7 @@ Requirements:
 <div>
 <img src="./doc/images/TOC_Schweke_manuscript_revisions_forGitHub.png" width="60%" align="right"/>
 
-QSPROTEOME is a free standalone and easy-to-use command-line interface (CLI) software that enables the fast and automated 2D projection of either predefined features of protein surface (electrostatic potential, Kyte-Doolittle hydrophobicity, Wimley-White hydrophobicity, stickiness and surface relief) or any descriptor encoded in the temperature factor column of a PDB file. The 2D maps computed by QSPROTEOME can be used to analyze and/or compare protein surface properties.
+QSPROTEOME is a free standalone and easy-to-use command-line interface (CLI) software that detect homo-oligomerization from AlphaFold homodimeric predictions. The user can use the structure of these predictions to reconstruct full length AlphaFold homomeric complexes.
 </div>
 
 
@@ -41,7 +41,7 @@ QSPROTEOME is a free standalone and easy-to-use command-line interface (CLI) sof
 
 ### Requirements
 
-QSPROTEOME is a CLI tool that requires a UNIX-based OS system. It is written in perl (version 3.7), R (version 4.3.1) and bash. It relies on the already included MSMS software ([1](#ref-1)) and may optionally require APBS ([2](#ref-2)) if the user wants to perform electrostatics calculations.
+QSPROTEOME is a tool that requires a UNIX-based OS system. It is written in perl (version 3.7), R (version 4.3.1) and bash. It and may optionally require AnAnas ([1](#ref-1)) and molprobity ([2](#ref-2)) if the user wants to reconstruct full homomeric complexes.
 
 All those requirements (including APBS) are met in a [predefined Docker image](https://hub.docker.com/r/lopesi2bc/surfmap/tags) that we recommend the user to use. 
 
