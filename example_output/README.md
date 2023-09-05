@@ -25,9 +25,9 @@ table of intra and interchain contacts. It is organized as follow:
 - res2 = residue number of the second residue
 - rescode1 = one-letter code of the first residue
 - rescode2 = one-letter code of the second residue
-- dmin = distance 1
-- dmax = distance 2
-- davg = distance 3
+- dmin = distance 1 (?)
+- dmax = distance 2 (?)
+- davg = distance 3 (?)
   
 #### Q8WV44_V1_5_diso_info.csv:
 
