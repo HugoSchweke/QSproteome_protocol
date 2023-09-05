@@ -140,7 +140,7 @@ Q8WV44_V1_5 B B 13 16 T E 1 3.502 3.502 3.502
 # Usage of QSPROTEOME
 [Go to the top](#Table-of-contents)
 
-Once you have [installed the QSPROTEOME package](#how-to-install-surfmap), you should be ready to use SURFMAP. 
+Once you have [installed the QSPROTEOME package](#how-to-install-qsproteome), you should be ready to use SURFMAP. 
 
 #### The example directory
 To guide the user in the usage of QSPROTEOME, we will make use of files that you can find in the `example/` directory of SURFMAP. You can see where this directory is located on your machine with the following command:
