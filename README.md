@@ -10,9 +10,6 @@ Requirements:
 - perl (version XX)
 - R (version > 4.0.0)
 
- general.pm : set of perl functions necessary for the contact calculations part.
-  functions_get_contacts.pm  : perl functions to calculate
-
 
 # Table of contents
 
