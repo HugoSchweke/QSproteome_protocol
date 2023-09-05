@@ -286,11 +286,11 @@ if(is.na(data[5])){
 
 # colnames(data) = c("pae_cplx2","pae_cplx3", "pae_cplx4", "af_repre1_N", "af_repre2_N", "ndiso3")
 
-my.logit.pae3      = readRDS("logit_models/logit_model_17_2_2022_FULL_pae3.RDS") 
-my.logit.pae4      = readRDS("logit_models/logit_model_17_2_2022_FULL_pae4.RDS")
-my.logit.con3      = readRDS("logit_models/logit_model_17_2_2022_FULL_con3.RDS")
-my.logit.repre     = readRDS("logit_models/logit_model_17_2_2022_FULL_repre.RDS")
-my.logit.pae4.con3 = readRDS("logit_models/logit_model_17_2_2022_FULL_pae4.con3.RDS")
+my.logit.pae3      = readRDS("logit_models/logit_model_FULL_pae3.RDS") 
+my.logit.pae4      = readRDS("logit_models/logit_model_FULL_pae4.RDS")
+my.logit.con3      = readRDS("logit_models/logit_model_FULL_con3.RDS")
+my.logit.repre     = readRDS("logit_models/logit_model_FULL_repre.RDS")
+my.logit.pae4.con3 = readRDS("logit_models/logit_model_FULL_pae4.con3.RDS")
 
 #logodds      = predict(my.logit, newdata=data)
 proba.pae3      = predict(my.logit.pae3, newdata=data, type="response")
