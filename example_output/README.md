@@ -32,3 +32,10 @@ table of intra and interchain contacts. It is organized as follow:
 #### Q8WV44_V1_5_diso_info.csv:
 
 #### Q8WV44_V1_5_probability_scores.csv:
+
+Contains five probability scores.
+- PAE1 = probability of the model to be a physiological homomer based on a logistic regression model using the PAE1 metric
+- PAE2 = probability of the model to be a physiological homomer based on a logistic regression model using the PAE2 metric (mean PAE values of interchain contacts in the core structures).
+- PAE3 = probability of the model to be a physiological homomer based on a logistic regression model using the PAE3 metric (mean inter-chain PAE values of interface residues in the core structure).
+- PAE_interface = probability of the model to be a physiological homomer based on a logistic regression model using the PAE4 metric (mean PAE values of interchain contacts in the core structures).
+- dimer_proba = probability that the dimer is a physiological one.
