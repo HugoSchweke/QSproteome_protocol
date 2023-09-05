@@ -481,15 +481,18 @@ This project is under the MIT License terms. Please have a look at the LICENSE f
 # How to cite QSPROTEOME
 [Go to the top](#Table-of-contents)
 
-If SURFMAP has been useful to your research, please cite us as well as the original AnAnas paper:
+If QSPROTEOME has been useful to your research, please cite us:
 
 > An atlas of protein homo-oligomerization across domains of life
 Hugo Schweke, Tal Levin, Martin Pacesa, Casper A. Goverde, Prasun Kumar, Yoan Duhoo, Lars J. Dornfeld, Benjamin Dubreuil, Sandrine Georgeon, Sergey Ovchinnikov, Derek N. Woolfson, Bruno E. Correia, Sucharita Dey, Emmanuel D. Levy
 bioRxiv 2023.06.09.544317; doi: https://doi.org/10.1101/2023.06.09.544317 [Link](https://www.biorxiv.org/content/10.1101/2023.06.09.544317v1)
 
 
-Moreover, if you use the pipeline of the homomer structure prediction in your research, please cite the following papers : [Supporting APBS](https://apbs.readthedocs.io/en/latest/supporting.html) documentation page.
+Moreover, if you use the pipeline of the homomer structure prediction in your research, please cite the following papers:
 <br>
+Pagès, Guillaume, Elvira Kinzina, and Sergei Grudinin. 2018. “Analytical Symmetry Detection in Protein Assemblies. I. Cyclic Symmetries.” Journal of Structural Biology 203 (2): 142–48. [Link](https://doi.org/10.1016/j.jsb.2018.04.004)
+
+Williams, Christopher J., Jeffrey J. Headd, Nigel W. Moriarty, Michael G. Prisant, Lizbeth L. Videau, Lindsay N. Deis, Vishal Verma, et al. 2018. “MolProbity: More and Better Reference Data for Improved All-Atom Structure Validation.” Protein Science: A Publication of the Protein Society 27 (1): 293–315. [Link](https://doi.org/10.1107/S0907444909042073)
 
 # References
 [Go to the top](#Table-of-contents)
