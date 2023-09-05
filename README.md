@@ -24,11 +24,11 @@ Requirements:
 - [Aims](#Aims)
 - [Installation](#Installation)
 - [How it works](#How-it-works)
-- [Usage of SURFMAP](#Usage-of-SURFMAP)
+- [Usage of SURFMAP](#Usage-of-QSPROTEOME)
 - [Supporting the project](#Supporting-the-project)
 - [Contacts](#Contacts)
 - [Licence](#Licence)
-- [How to cite SURFMAP](#How-to-cite-SURFMAP)
+- [How to cite SURFMAP](#How-to-cite-QSPROTEOME)
 - [References](#References)
 
 # Aims
