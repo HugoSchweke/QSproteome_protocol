@@ -127,15 +127,16 @@ A,16,TRUE,FALSE,FALSE
 A,17,TRUE,TRUE,FALSE
 A,18,TRUE,TRUE,FALSE
 A,19,TRUE,TRUE,FALSE
+
+- chain = chain of the model
+- resnum = residue number
+- nodiso1 = TRUE if the residue is present in the structure nodiso1, FALSE if filtered out
+- nodiso2 = TRUE if the residue is present in the structure nodiso2, FALSE if filtered out
+- nodiso3 = TRUE if the residue is present in the structure nodiso3, FALSE if filtered out
  </pre>
 </details>
 
--   five columns:
-  - chain = chain of the model
-  - resnum = residue number
-  - nodiso1 = TRUE if the residue is present in the structure nodiso1, FALSE if filtered out
-  - nodiso2 = TRUE if the residue is present in the structure nodiso2, FALSE if filtered out
-  - nodiso3 = TRUE if the residue is present in the structure nodiso3, FALSE if filtered out
+
 
 
 
