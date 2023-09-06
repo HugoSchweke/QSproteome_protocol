@@ -39,52 +39,11 @@ QSPROTEOME is a protocol that detect homo-oligomerization from AlphaFold homodim
 
 QSPROTEOME is a tool that requires a UNIX-based OS system. It is written in perl (version 3.7), R (version 4.3.1) and bash. It and may optionally require AnAnas ([2](#ref-2)) and molprobity ([3](#ref-3)) if the user wants to reconstruct full homomeric complexes.
 
-All those requirements (including APBS) are met in a [predefined Docker image](https://hub.docker.com/r/lopesi2bc/surfmap/tags) that we recommend the user to use. 
-
-<details open>
-<summary><b>For a usage of the docker image</b></summary>
-
-- an UNIX-based OS system (any linux distribution, a MacOS system or [WSL2](https://learn.microsoft.com/fr-fr/windows/wsl/install) on windows)
-- [Python >= 3.7](https://www.python.org/downloads)
-- [Docker](https://docs.docker.com/get-docker/)
-
-</details>
-
-<details>
-<summary><b>For a usage on your local OS</b></summary>
-
-- an UNIX-based OS system (any linux distribution, a MacOS system or [WSL2](https://learn.microsoft.com/fr-fr/windows/wsl/install) on windows)
-- [Python >= 3.7](https://www.python.org/downloads)
-- [R >= 3.6](https://cran.r-project.org/)
-- [APBS](https://github.com/Electrostatics/apbs/releases) (optional - only if you want to compute electrostatic potential)
- 
-</details>
-<br>
-
-> :bell: Please note that **whether you want to use the Docker image of SURFMAP or not, you will still need to [install the SURFMAP package](#How-to-install-SURFMAP)**. Indeed the package contains internal features that make the use of the Docker image totally transparent for the user who will not have to enter 'complex' commands for the connection of useful mounting points. In fact, the SURFMAP commands are almost exactly the same between the use of the docker image or not (see [here](#cmd_docker_or_not)).
-
-
 
 
 ## How to install QSPROTEOME
 [Go to the top](#Table-of-contents)
 
-First, make sure you meet the [system requirements](#requirements) outlined earlier and consider the [recommendation](#recommendation). Then, follow instructions described in option 1 or 2 if you're not interested in accessing/modifying the source code, otherwise prefer option 3. 
-
-<a id="install_option1"></a>
-<details open>
-<summary><h4>Option 1: from the archive (git not required)</h4></summary>
-
-First download an archive of our latest release <a href="https://github.com/i2bc/SURFMAP/releases/latest" target="_blank">here</a>.
-
-```bash
-# upgrade pip to its latest version
-python3 -m pip install --upgrade pip
-
-# install SURFMAP v2.0.0
-python3 -m pip install SURFMAP-2.0.0.zip # (or .tar.gz) 
-```
-</details>
 
 
 # How it works
