@@ -1,5 +1,5 @@
 # QSproteome_protocol
-This repository contains all the necessary script and data to calculate everything from input pdb model + json file to dimer probability.
+This repository contains all the necessary script and data to calculate everything from input pdb model + json file to dimer probability. ([1](#ref-1))
 
 # Table of contents
 
@@ -25,7 +25,7 @@ QSPROTEOME is a free standalone and easy-to-use command-line interface (CLI) sof
 
 ### Requirements
 
-QSPROTEOME is a tool that requires a UNIX-based OS system. It is written in perl (version 3.7), R (version 4.3.1) and bash. It and may optionally require AnAnas ([1](#ref-1)) and molprobity ([2](#ref-2)) if the user wants to reconstruct full homomeric complexes.
+QSPROTEOME is a tool that requires a UNIX-based OS system. It is written in perl (version 3.7), R (version 4.3.1) and bash. It and may optionally require AnAnas ([2](#ref-2)) and molprobity ([3](#ref-3)) if the user wants to reconstruct full homomeric complexes.
 
 All those requirements (including APBS) are met in a [predefined Docker image](https://hub.docker.com/r/lopesi2bc/surfmap/tags) that we recommend the user to use. 
 
@@ -201,9 +201,14 @@ Moreover, if you use the pipeline of the homomer structure prediction in your re
 
 <a id="ref-1"></a>
 
-> (1) Pagès, Guillaume, Elvira Kinzina, and Sergei Grudinin. 2018. “Analytical Symmetry Detection in Protein Assemblies. I. Cyclic Symmetries.” Journal of Structural Biology 203 (2): 142–48.
+> (1) Hugo Schweke, Tal Levin, Martin Pacesa, Casper A. Goverde, Prasun Kumar, Yoan Duhoo, Lars J. Dornfeld, Benjamin Dubreuil, Sandrine Georgeon, Sergey Ovchinnikov, Derek N. Woolfson, Bruno E. Correia, Sucharita Dey, Emmanuel D. Levy. ”An atlas of protein homo-oligomerization across domains of life.” bioRxiv 2023.06.09.544317.
 
 
 <a id="ref-2"></a>
 
-> (2) Williams, Christopher J., Jeffrey J. Headd, Nigel W. Moriarty, Michael G. Prisant, Lizbeth L. Videau, Lindsay N. Deis, Vishal Verma, et al. 2018. “MolProbity: More and Better Reference Data for Improved All-Atom Structure Validation.” Protein Science: A Publication of the Protein Society 27 (1): 293–315.
+> (1) Pagès, Guillaume, Elvira Kinzina, and Sergei Grudinin. 2018. “Analytical Symmetry Detection in Protein Assemblies. I. Cyclic Symmetries.” Journal of Structural Biology 203 (2): 142–48.
+
+
+<a id="ref-3"></a>
+
+> (2) Christopher J. Williams, Jeffrey J. Headd, Nigel W. Moriarty, Michael G. Prisant, Lizbeth L. Videau, Lindsay N. Deis, Vishal Verma, et al. 2018. “MolProbity: More and Better Reference Data for Improved All-Atom Structure Validation.” Protein Science: A Publication of the Protein Society 27 (1): 293–315.
