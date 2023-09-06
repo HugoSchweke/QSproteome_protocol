@@ -21,8 +21,13 @@ do
     lower=`awk -v a=$rmsd 'BEGIN { print (a <= 7) ? "YES" : "NO" }'`
     clashscore="NA"
 
+    if [ $lower == "YES" & $sym == 2 ]
+    then
+        echo "symmetry c$sym has rmsd below 2.5A: $rmsd"
+        clashscore=`/data4/00_BIN/phenix/phenix-1.20.1-4487/build/bin/phenix.clashscore $outpath/${id%.pdb}_c${sym}.pdb | grep "clashscore" | cut -d'=' -f2`
+    
     # Is the rmsd below 2.5A threshold?
-    if [ $lower == "YES" ]
+    elif [ $lower == "YES" ]
     then
         # check if the exact same rmsd is in values already computed. 
         # if so it means that we are just testing a multiple of a smaller symmetry 
