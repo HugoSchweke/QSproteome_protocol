@@ -1,5 +1,11 @@
-# QSproteome_protocol
-This repository contains all the necessary script and data to calculate everything from input pdb model + json file to dimer probability. ([1](#ref-1))
+# QSproteome
+
+
+This is a repository for all the code re 
+
+It contains all the necessary scripts to calculate predict, detect and reconstruct its full size complex from an AlphaFold homodimeric model and the associated json file
+
+to dimer probability. ([1](#ref-1))
 
 # Table of contents
 
@@ -16,7 +22,11 @@ This repository contains all the necessary script and data to calculate everythi
 # Aims
 [Go to the top](#Table-of-contents)
 
-QSPROTEOME is a free standalone and easy-to-use command-line interface (CLI) software that detect homo-oligomerization from AlphaFold homodimeric predictions. The user can use the structure of these predictions to reconstruct full length AlphaFold homomeric complexes.
+QSPROTEOME is a free standalone and easy-to-use command-line interface (CLI) software that detect homo-oligomerization from AlphaFold homodimeric predictions. The pipeline proposed here can:
+1- Calculate a probability score that the homodimer given in input is a physiological one. 
+2- Detect the symmetry, if any, of the proposed assembly and reconstruct the full size complex.
+3- Optionnally, the user can use this full size complex as a template to model the full size complex with AlphaFold Big Bang (?)
+
 </div>
 
 
@@ -206,9 +216,9 @@ Moreover, if you use the pipeline of the homomer structure prediction in your re
 
 <a id="ref-2"></a>
 
-> (1) Pagès, Guillaume, Elvira Kinzina, and Sergei Grudinin. 2018. “Analytical Symmetry Detection in Protein Assemblies. I. Cyclic Symmetries.” Journal of Structural Biology 203 (2): 142–48.
+> (2) Pagès, Guillaume, Elvira Kinzina, and Sergei Grudinin. 2018. “Analytical Symmetry Detection in Protein Assemblies. I. Cyclic Symmetries.” Journal of Structural Biology 203 (2): 142–48.
 
 
 <a id="ref-3"></a>
 
-> (2) Christopher J. Williams, Jeffrey J. Headd, Nigel W. Moriarty, Michael G. Prisant, Lizbeth L. Videau, Lindsay N. Deis, Vishal Verma, et al. 2018. “MolProbity: More and Better Reference Data for Improved All-Atom Structure Validation.” Protein Science: A Publication of the Protein Society 27 (1): 293–315.
+> (3) Christopher J. Williams, Jeffrey J. Headd, Nigel W. Moriarty, Michael G. Prisant, Lizbeth L. Videau, Lindsay N. Deis, Vishal Verma, et al. 2018. “MolProbity: More and Better Reference Data for Improved All-Atom Structure Validation.” Protein Science: A Publication of the Protein Society 27 (1): 293–315.
