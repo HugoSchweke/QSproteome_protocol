@@ -102,15 +102,19 @@ python3 -m pip install SURFMAP-2.0.0.zip # (or .tar.gz)
 
 QSPROTEOME needs in input an AlphaFold model of a homodimer in pdb format, as well as the associated json file provided by AF.
 <br>
-<br>
 
-[Using a PDB file as input](#from-a-pdb-structure) is the most classic usage of SURFMAP. In this case, two outputs are generated: 
-- the 2D map projection in a PDF format (PNG is also available)
-- a matrix text file written in a SURFMAP-specific format
-
-The matrix text file contains all information about each projected surface residue and their associated feature value. As the above figure shows, this text file is the direct input for the last step of the SURFMAP workflow as it is read to generate the 2D map projection.
-<br>
-<br>
+Four outputs are generated: 
+- A pdb file where residues are filtered out according of to the *nodiso1* definition (residues with a pLDDT score below 40 are filtered out)
+- A pdb file where residues are filtered out according of to the *nodiso2* definition (starting from the nodiso1 file, a median pLDDT score is computed, and residues with a pLDDT score
+below 75 and below the median value are discarded.)
+- A pdb file where residues are filtered out according of to the *nodiso3* definition (Starting from the nodiso2 file, a single linkage clustering is applied on the contact matrix of the remaining residues and the largest cluster is retained, thus eliminating disconnected structural parts.)
+- a csv file that contain five columns:
+  - chain = chain of the model
+  - resnum = residue number
+  - nodiso1 = TRUE if the residue is present in the structure nodiso1, FALSE if filtered out
+  - nodiso2 = TRUE if the residue is present in the structure nodiso2, FALSE if filtered out
+  - nodiso3 = TRUE if the residue is present in the structure nodiso3, FALSE if filtered out
+- a contact file containing information regarding all the residues in contact in the input pdb file.
 
 <details>
 <summary>Example of a table of contacts format (.txt)</summary>
