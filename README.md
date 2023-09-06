@@ -109,10 +109,9 @@ Five outputs are generated:
 below 75 and below the median value are discarded.)
 - A pdb file where residues are filtered out according of to the *nodiso3* definition (Starting from the nodiso2 file, a single linkage clustering is applied on the contact matrix of the remaining residues and the largest cluster is retained, thus eliminating disconnected structural parts.)
 - a csv file that indicating which residues are filtered out following the *nodiso* definitions
-- 
+  
 <details>
-<summary>Example of a table of disorder format (.txt)</summary>
-
+<summary>Example of a table of disorder format (.csv)</summary>
  
 </pre>
 chain,resnum,nodiso1,nodiso2,nodiso3
@@ -136,13 +135,8 @@ A,19,TRUE,TRUE,FALSE
  </pre>
 </details>
 
-
-
-
-
  
 - a contact file containing information regarding all the residues in contact in the input pdb file.
-
 
 <details>
 <summary>Example of a table of contacts format (.txt)</summary>
