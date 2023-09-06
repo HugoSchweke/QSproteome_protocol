@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Path to the script
+SCRIPTPATH=`dirname $SCRIPT`
+
 pdb=$1
 outpath=$2
 
@@ -16,7 +19,7 @@ echo "symmetry av.rmsd clashscore" > $outfile
 #for sym in 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 for sym in 2 3 4 5 6 7 8 9 10 11 12
 do
-    rmsd=`/opt/ananas $pdb c$sym -C 100 | grep "Average RMSD" | awk '{ print $4 }' `
+    rmsd=`${PATHSCRIPT}/../bin/ananas $pdb c$sym -C 100 | grep "Average RMSD" | awk '{ print $4 }' `
     #lower=`awk -v a=$rmsd 'BEGIN { print (a <= 2.5) ? "YES" : "NO" }'`
     lower=`awk -v a=$rmsd 'BEGIN { print (a <= 7) ? "YES" : "NO" }'`
     clashscore="NA"
