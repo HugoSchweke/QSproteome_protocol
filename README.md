@@ -103,18 +103,37 @@ python3 -m pip install SURFMAP-2.0.0.zip # (or .tar.gz)
 QSPROTEOME needs in input an AlphaFold model of a homodimer in pdb format, as well as the associated json file provided by AF.
 <br>
 
-Four outputs are generated: 
+Five outputs are generated: 
 - A pdb file where residues are filtered out according of to the *nodiso1* definition (residues with a pLDDT score below 40 are filtered out)
 - A pdb file where residues are filtered out according of to the *nodiso2* definition (starting from the nodiso1 file, a median pLDDT score is computed, and residues with a pLDDT score
 below 75 and below the median value are discarded.)
 - A pdb file where residues are filtered out according of to the *nodiso3* definition (Starting from the nodiso2 file, a single linkage clustering is applied on the contact matrix of the remaining residues and the largest cluster is retained, thus eliminating disconnected structural parts.)
-- a csv file that contain five columns:
+- a csv file that indicating which residues are filtered out following the *nodiso* definitions
+<details>
+<summary>Example of a table of disorder format (.txt)</summary>
+-   five columns:
   - chain = chain of the model
   - resnum = residue number
   - nodiso1 = TRUE if the residue is present in the structure nodiso1, FALSE if filtered out
   - nodiso2 = TRUE if the residue is present in the structure nodiso2, FALSE if filtered out
   - nodiso3 = TRUE if the residue is present in the structure nodiso3, FALSE if filtered out
 - a contact file containing information regarding all the residues in contact in the input pdb file.
+
+</pre>
+chain,resnum,nodiso1,nodiso2,nodiso3
+A,1,FALSE,FALSE,FALSE
+A,2,FALSE,FALSE,FALSE
+A,3,FALSE,FALSE,FALSE
+A,4,FALSE,FALSE,FALSE
+...
+A,14,TRUE,FALSE,FALSE
+A,15,TRUE,FALSE,FALSE
+A,16,TRUE,FALSE,FALSE
+A,17,TRUE,TRUE,FALSE
+A,18,TRUE,TRUE,FALSE
+A,19,TRUE,TRUE,FALSE
+ </pre>
+</details>
 
 <details>
 <summary>Example of a table of contacts format (.txt)</summary>
