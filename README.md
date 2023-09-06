@@ -22,7 +22,7 @@ to dimer probability. ([1](#ref-1))
 # Aims
 [Go to the top](#Table-of-contents)
 
-QSPROTEOME is a free standalone and easy-to-use command-line interface (CLI) software that detect homo-oligomerization from AlphaFold homodimeric predictions. The pipeline proposed here can:
+QSPROTEOME is a protocol that detect homo-oligomerization from AlphaFold homodimeric predictions. The pipeline proposed here can:
 
 1- Calculate a probability score that the homodimer given in input is a physiological one. 
 
