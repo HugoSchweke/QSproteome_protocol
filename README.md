@@ -136,9 +136,6 @@ To guide the user in the usage of QSPROTEOME, we will make use of files that you
 python3 -c "import surfmap; print(surfmap.PATH_TO_EXAMPLES)"
 ```
 
-Please note that for all command examples illustrated below, we will make [use of the Docker image of SURFMAP](#use-surfmap-with-docker-or-not).
-
-
 #### QSPROTEOME options
 
 <details>
