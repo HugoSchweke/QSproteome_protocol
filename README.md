@@ -26,7 +26,7 @@ QSPROTEOME is a free standalone and easy-to-use command-line interface (CLI) sof
 
 1- Calculate a probability score that the homodimer given in input is a physiological one. 
 
-2- Detect the symmetry, if any, of the proposed assembly and reconstruct the full size complex.
+2- Detect the symmetry, if any, of the proposed assembly and reconstruct the full size complex with the AnAnas software ([2](#ref-2)).
 
 3- Optionnally, the user can use this full size complex as a template to model the full size complex with AlphaFold Big Bang (?)
 
