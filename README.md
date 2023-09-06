@@ -113,7 +113,7 @@ below 75 and below the median value are discarded.)
 <details>
 <summary>Example of a table of disorder format (.csv)</summary>
  
-</pre>
+<pre> 
 chain,resnum,nodiso1,nodiso2,nodiso3
 A,1,FALSE,FALSE,FALSE
 A,2,FALSE,FALSE,FALSE
@@ -132,34 +132,6 @@ A,19,TRUE,TRUE,FALSE
 - nodiso1 = TRUE if the residue is present in the structure nodiso1, FALSE if filtered out
 - nodiso2 = TRUE if the residue is present in the structure nodiso2, FALSE if filtered out
 - nodiso3 = TRUE if the residue is present in the structure nodiso3, FALSE if filtered out
- </pre>
-</details>
-<details>
-<summary>Example of a table of contacts format (.txt)</summary>
-
-<pre> 
-code chain1 chain2 res1 res2 rescode1 rescode2 d1 d2 d3
-Q8WV44_V1_5 B B 9 13 N T 2 2.806 3.287 3.046
-Q8WV44_V1_5 B B 9 12 N Q 1 3.172 3.172 3.172
-Q8WV44_V1_5 B B 10 13 P T 3 3.015 3.243 3.125
-Q8WV44_V1_5 B B 10 14 P L 5 3.147 4.014 3.480
-Q8WV44_V1_5 B B 11 15 V Q 2 3.128 3.553 3.341
-Q8WV44_V1_5 B B 11 14 V L 4 3.182 3.670 3.502
-Q8WV44_V1_5 B B 12 15 Q Q 2 3.354 3.796 3.575
-Q8WV44_V1_5 B B 12 9 Q N 1 3.172 3.172 3.172
-Q8WV44_V1_5 B B 12 16 Q E 3 3.177 3.760 3.451
-Q8WV44_V1_5 B B 13 16 T E 1 3.502 3.502 3.502
-
-- code = code of the pdb file in input
-- chain1 = chain id of the first residue
-- chain2 = chain id of the second residue
-- res1 = residue number of the first residue
-- res2 = residue number of the second residue
-- rescode1 = one-letter code of the first residue
-- rescode2 = one-letter code of the second residue
-- dmin = distance 1
-- dmax = distance 2
-- davg = distance 3
  </pre>
 </details>
  
