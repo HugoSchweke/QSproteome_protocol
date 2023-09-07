@@ -1,10 +1,18 @@
 #!/bin/bash
 
+
 # Path to the script
+SCRIPT=$(readlink -f $0)
 SCRIPTPATH=`dirname $SCRIPT`
+echo -n "path to script: $SCRIPTPATH"
 
 pdb=$1
 outpath=$2
+
+if [ ! -d $outpath ]
+then
+    mkdir $outpath
+fi
 
 id=$(basename $pdb)
 outfile=$outpath/${id%.pdb}_all_csym.dat
@@ -18,15 +26,15 @@ echo "symmetry av.rmsd clashscore" > $outfile
 
 for sym in 2 3 4 5 6 7 8 9 10 11 12
 do
-    rmsd=`${PATHSCRIPT}/../bin/ananas $pdb c$sym -C 100 | grep "Average RMSD" | awk '{ print $4 }' `
+    rmsd=`${SCRIPTPATH}/../bin/ananas $pdb c$sym -C 100 | grep "Average RMSD" | awk '{ print $4 }' `
     #lower=`awk -v a=$rmsd 'BEGIN { print (a <= 2.5) ? "YES" : "NO" }'`
     lower=`awk -v a=$rmsd 'BEGIN { print (a <= 7) ? "YES" : "NO" }'`
     clashscore="NA"
 
-    if [ $lower == "YES" & $sym == 2 ]
+    if [ $lower == "YES" ] && [ $sym == 2 ]
     then
         echo "symmetry c$sym has rmsd below 2.5A: $rmsd"
-        clashscore=`/data4/00_BIN/phenix/phenix-1.20.1-4487/build/bin/phenix.clashscore $outpath/${id%.pdb}_c${sym}.pdb | grep "clashscore" | cut -d'=' -f2`
+        clashscore=`/data4/00_BIN/phenix_1.20/phenix-1.20.1-4487/build/bin/phenix.clashscore $outpath/${id%.pdb}_c${sym}.pdb | grep "clashscore" | cut -d'=' -f2`
     
     # Is the rmsd below 2.5A threshold?
     elif [ $lower == "YES" ]
@@ -38,9 +46,9 @@ do
         then
             echo "symmetry c$sym has rmsd below 2.5A: $rmsd"
             # step 1: reconstruct the pdb of this specific symmetry
-            ${PATHSCRIPT}/../bin/ananas $pdb c$sym --symmetrize $outpath/${id%.pdb}_c${sym}.pdb
+            ${SCRIPTPATH}/../bin/ananas $pdb c$sym --symmetrize $outpath/${id%.pdb}_c${sym}.pdb
             # step 2: assess clash score with phenix.clashscore
-            clashscore=`/opt/phenix/phenix-1.20.1-4487/build/bin/phenix.clashscore $outpath/${id%.pdb}_c${sym}.pdb | grep "clashscore" | cut -d'=' -f2`
+            clashscore=`/opt/phenix_1.20/phenix-1.20.1-4487/build/bin/phenix.clashscore $outpath/${id%.pdb}_c${sym}.pdb | grep "clashscore" | cut -d'=' -f2`
             rm $outpath/${id%.pdb}_c${sym}.pdb # removing symmetrized pdb after evaluating clashes
         fi
     fi
