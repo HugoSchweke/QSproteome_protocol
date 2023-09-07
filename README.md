@@ -37,7 +37,7 @@ QSPROTEOME is a protocol that detect homo-oligomerization from AlphaFold homodim
 
 ### Requirements
 
-QSPROTEOME is a tool that requires a UNIX-based OS system. It is written in perl (version 3.7), R (version 4.3.1) and bash. It and may optionally require AnAnas ([2](#ref-2)) and molprobity ([3](#ref-3)) if the user wants to reconstruct full homomeric complexes.
+QSPROTEOME is a tool that requires a UNIX-based OS system. It is written in perl (version XX), R (version 4.3.1) and bash. It may optionally require AnAnas ([2](#ref-2)) and molprobity ([3](#ref-3)) if the user wants to reconstruct full homomeric complexes.
 
 
 
@@ -122,13 +122,6 @@ Q8WV44_V1_5 B B 13 16 T E 1 3.502 3.502 3.502
 
 Once you have [installed the QSPROTEOME package](#how-to-install-qsproteome), you should be ready to use it. 
 
-#### The example directory
-To guide the user in the usage of QSPROTEOME, we will make use of files that you can find in the `example/` directory. You can see where this directory is located on your machine with the following command:
-
-```bash
-python3 -c "import surfmap; print(surfmap.PATH_TO_EXAMPLES)"
-```
-
 #### QSPROTEOME options
 
 <details>
@@ -143,6 +136,14 @@ options:
 </pre>
 </details>
 
+
+#### The example directory
+To guide the user in the usage of QSPROTEOME, we will make use of files that you can find in the `example/` directory. 
+
+```bash
+cd scripts
+perl protocol_QSproteome_single_uniprot.pl ../example/Q8WV44_V1_5.pdb ../example/Q8WV44_rank_2_model_5_ptm_seed_0_pae.json.bz2
+```
 
 # Supporting the project
 [Go to the top](#Table-of-contents)
