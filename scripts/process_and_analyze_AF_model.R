@@ -49,23 +49,23 @@ script_path <- gsub("^--file=", "", script_arg)
 # Print the script path
 cat("Script Path:", script_path, "\n")
 
-# args = commandArgs(trailingOnly = TRUE)
-# 
-# if (length(args)!=4) {
-#   stop("One arguments expected --- USAGE: Rscript 0000_remove_disorder.R CODE JSONFILE CONTACTS OUTPATH", call.=FALSE)
-# }
-# 
-# CODE = args[1] 
-# JSONFILE = args[2]
-# CONTACTFILE = args[3]
-# CONTACTS = read.table(CONTACTFILE)
-# OUTPATH = args[4]
+args = commandArgs(trailingOnly = TRUE)
 
-CODE = "Q8WV44_V1_5"
-JSONFILE = "data/Q8WV44_rank_2_model_5_ptm_seed_0_pae.json.bz2"
-CONTACTS = read.table("data/Q8WV44_V1_5_FULL_CONTACTS.txt")
-OUTPATH = "outpath/"
-# print(head(CONTACTS))
+if (length(args)!=4) {
+  stop("One arguments expected --- USAGE: Rscript 0000_remove_disorder.R CODE JSONFILE CONTACTS OUTPATH", call.=FALSE)
+}
+
+CODE = args[1] 
+JSONFILE = args[2]
+CONTACTFILE = args[3]
+CONTACTS = read.table(CONTACTFILE)
+OUTPATH = args[4]
+
+#CODE = "Q8WV44_V1_5"
+#JSONFILE = "../example/Q8WV44_rank_2_model_5_ptm_seed_0_pae.json.bz2"
+#CONTACTS = read.table("../example/Q8WV44_V1_5_FULL_CONTACTS.txt")
+#OUTPATH = "../example_output/"
+## print(head(CONTACTS))
 
 colnames(CONTACTS) = c("code", "chain1", "chain2", "res1", "res2", 
                        "resname1", "resname2", "n_contacts", "dmin", "dmax", "davg")
@@ -82,7 +82,7 @@ Nclash_res_int = length(unique(CONTACTS$res1[CONTACTS$dmin < 2 & (CONTACTS$chain
 
 #################### READ PDB FILE ########################
 
-pdb_file <- "/media/elusers/users/hugo/15_alphafold/37_revision_Cell/Q8WV44_V1_5.pdb"
+pdb_file <- "/media/elusers/users/hugo/15_alphafold/37_revision_Cell/QSproteome_protocol/example/Q8WV44_V1_5.pdb"
 pdb_data <- read.pdb(pdb_file)
 pdb_dataframe <- as.data.frame(pdb_data$atom)
 pdb_dataframe_plddt = pdb_dataframe[!duplicated(pdb_dataframe[,c("chain","resno","b")]), c("chain","resno","b")]
@@ -177,7 +177,7 @@ if(is.na(n_contact)) {
 if(file.exists(JSONFILE)){
   
   tmp2 = fromJSON(file=JSONFILE)
-  tmp3 = fromJSON(file="/media/elusers/users/hugo/15_alphafold/34_AWS/ECK12/06_unzip_files/P45756/P45756_scores_rank_001_alphafold2_multimer_v3_model_2_seed_000.json")
+  # tmp3 = fromJSON(file="/media/elusers/users/hugo/15_alphafold/34_AWS/ECK12/06_unzip_files/P45756/P45756_scores_rank_001_alphafold2_multimer_v3_model_2_seed_000.json")
   
   ## Check if the json format is old or new version
   if ("pae" %in% names(tmp2)) { ## new version
@@ -286,11 +286,11 @@ if(is.na(data[5])){
 
 # colnames(data) = c("pae_cplx2","pae_cplx3", "pae_cplx4", "af_repre1_N", "af_repre2_N", "ndiso3")
 
-my.logit.pae3      = readRDS("logit_models/logit_model_FULL_pae3.RDS") 
-my.logit.pae4      = readRDS("logit_models/logit_model_FULL_pae4.RDS")
-my.logit.con3      = readRDS("logit_models/logit_model_FULL_con3.RDS")
-my.logit.repre     = readRDS("logit_models/logit_model_FULL_repre.RDS")
-my.logit.pae4.con3 = readRDS("logit_models/logit_model_FULL_pae4.con3.RDS")
+my.logit.pae3      = readRDS("../logit_models/logit_model_FULL_pae3.RDS") 
+my.logit.pae4      = readRDS("../logit_models/logit_model_FULL_pae4.RDS")
+my.logit.con3      = readRDS("../logit_models/logit_model_FULL_con3.RDS")
+my.logit.repre     = readRDS("../logit_models/logit_model_FULL_repre.RDS")
+my.logit.pae4.con3 = readRDS("../logit_models/logit_model_FULL_pae4.con3.RDS")
 
 #logodds      = predict(my.logit, newdata=data)
 proba.pae3      = predict(my.logit.pae3, newdata=data, type="response")
