@@ -1,10 +1,52 @@
-use File::Basename;
 use strict;
 use warnings;
+use File::Basename;
+use Cwd;
+use Getopt::Long;
 
-my $PDBFILE = $ARGV[0];
-my $JSON = $ARGV[1];
-my $OUTPATH = $ARGV[2];
+
+# Get the name of the script
+my $script_name = $0;
+
+# Get the full path to the script
+my $script_path = Cwd::abs_path($script_name);
+my $script_dir = dirname($script_path);
+
+require("$script_dir/functions_get_contacts.pm");
+
+my $PDBFILE;
+my $JSON;
+my $OUTPATH;
+
+# Define the command-line options
+GetOptions(
+    'pdbfile=s'    => \$PDBFILE,    # Input file (string)
+    'json=s'   => \$JSON,   # Output file (string)
+    'outpath=s'    => \$OUTPATH,       # Verbose mode (flag)
+);
+
+# Check for required options
+unless (defined $PDBFILE) {
+    die "Error: Input AlphaFold model pdb file is required. Use --pdb <file>\n";
+}
+
+unless (defined $JSON) {
+    die "Error: Input Alphafold model json file is required. Use --json <file>\n";
+}
+
+unless (defined $OUTPATH) {
+    die "Error: Path where output files will be written is required. Use --outpath <file>\n";
+}
+
+
+# Process the options
+print "pdb file: $PDBFILE\n" if $PDBFILE;
+print "json file: $JSON\n" if $JSON;
+print "out path: $OUTPATH\n" if $OUTPATH;
+
+#my $PDBFILE = $ARGV[0];
+#my $JSON = $ARGV[1];
+#my $OUTPATH = $ARGV[2];
 
 # Extract pdb id
 my $CODE = (fileparse($PDBFILE, qr/\.[^.]*/))[0];
@@ -25,8 +67,6 @@ if (!-d $OUTPATH) {
 } else {
     print "Directory already exists.\n";
 }
-
-require("/media/elusers/users/hugo/15_alphafold/37_revision_Cell/QSproteome_protocol/functions_get_contacts.pm");
 
 ### STEP 1
 ## Calculate the contacts in the model
