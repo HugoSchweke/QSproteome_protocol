@@ -77,7 +77,7 @@ process_contacts(@PDBFILES, "$OUTPATH/$CODE", 1);
 
 #### STEP 2
 ### Calculate nodiso1, 2, 3 
-my $CONTACTFILE = "$OUTPATH/$CODE"."_FULL.txt";
+my $CONTACTFILE = "$OUTPATH/$CODE"."_FULL_CONTACT.txt";
 print "PDBFILE: $PDBFILE\n";
 print "JSON: $JSON\n";
 print "CONTACTFILE: $CONTACTFILE\n";
