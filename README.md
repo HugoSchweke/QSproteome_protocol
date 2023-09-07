@@ -3,7 +3,7 @@
 
 This repository contains the scripts and protocol from ([1](#ref-1)) 
 
-It contains all the necessary scripts to calculate predict, detect and reconstruct its full size complex from an AlphaFold homodimeric model.
+It contains all the necessary scripts to predict homomerization, detect symmetry and reconstruct full size complex from an AlphaFold homodimeric model.
 
 
 # Table of contents
