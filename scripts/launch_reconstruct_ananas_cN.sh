@@ -5,6 +5,8 @@
 SCRIPT=$(readlink -f $0)
 SCRIPTPATH=`dirname $SCRIPT`
 echo -n "path to script: $SCRIPTPATH"
+#source ~/.bashrc
+
 
 pdb=$1
 outpath=$2
@@ -51,7 +53,8 @@ do
             # step 1: reconstruct the pdb of this specific symmetry
             ${SCRIPTPATH}/../bin/ananas $pdb c$sym --symmetrize $outpath/${id%.pdb}_c${sym}.pdb
             # step 2: assess clash score with phenix.clashscore
-            clashscore=`/opt/phenix_1.20/phenix-1.20.1-4487/build/bin/phenix.clashscore $outpath/${id%.pdb}_c${sym}.pdb | grep "clashscore" | cut -d'=' -f2`
+            #clashscore=`/opt/phenix_1.20/phenix-1.20.1-4487/build/bin/phenix.clashscore $outpath/${id%.pdb}_c${sym}.pdb | grep "clashscore" | cut -d'=' -f2`
+            clashscore=`$PHENIX_CLASHSCORE $outpath/${id%.pdb}_c${sym}.pdb | grep "clashscore" | cut -d'=' -f2`
             rm $outpath/${id%.pdb}_c${sym}.pdb # removing symmetrized pdb after evaluating clashes
         fi
     fi
