@@ -55,7 +55,9 @@ if (length(args)!=4) {
   stop("One arguments expected --- USAGE: Rscript 0000_remove_disorder.R CODE JSONFILE CONTACTS OUTPATH", call.=FALSE)
 }
 
-CODE = args[1] 
+PDB = args[1]
+CODE =  tools::file_path_sans_ext(basename(PDB))
+cat("pdb code: ", CODE, "\n")
 JSONFILE = args[2]
 CONTACTFILE = args[3]
 CONTACTS = read.table(CONTACTFILE)
@@ -63,7 +65,8 @@ OUTPATH = args[4]
 
 #CODE = "Q8WV44_V1_5"
 #JSONFILE = "../example/Q8WV44_rank_2_model_5_ptm_seed_0_pae.json.bz2"
-#CONTACTS = read.table("../example/Q8WV44_V1_5_FULL_CONTACTS.txt")
+# CONTACTS = read.table("../example/Q8WV44_V1_5_FULL_CONTACTS.txt")
+# CONTACTS = read.table("/media/elusers/users/hugo/15_alphafold/37_revision_Cell/QSproteome_protocol/scripts/../../test/P25298_V1_5_FULL_CONTACT.txt")
 #OUTPATH = "../example_output/"
 ## print(head(CONTACTS))
 
@@ -82,8 +85,8 @@ Nclash_res_int = length(unique(CONTACTS$res1[CONTACTS$dmin < 2 & (CONTACTS$chain
 
 #################### READ PDB FILE ########################
 
-pdb_file <- "/media/elusers/users/hugo/15_alphafold/37_revision_Cell/QSproteome_protocol/example/Q8WV44_V1_5.pdb"
-pdb_data <- read.pdb(pdb_file)
+# pdb_file <- "/media/elusers/users/hugo/15_alphafold/37_revision_Cell/QSproteome_protocol/example/Q8WV44_V1_5.pdb"
+pdb_data <- read.pdb(PDB)
 pdb_dataframe <- as.data.frame(pdb_data$atom)
 pdb_dataframe_plddt = pdb_dataframe[!duplicated(pdb_dataframe[,c("chain","resno","b")]), c("chain","resno","b")]
 colnames(pdb_dataframe_plddt) = c("chain", "resnum", "bfact")
