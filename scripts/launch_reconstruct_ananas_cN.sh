@@ -30,15 +30,18 @@ do
     #lower=`awk -v a=$rmsd 'BEGIN { print (a <= 2.5) ? "YES" : "NO" }'`
     lower=`awk -v a=$rmsd 'BEGIN { print (a <= 7) ? "YES" : "NO" }'`
     clashscore="NA"
+    echo -e "\n*************************\nrmsd : $rmsd\n*************************\n"
 
     if [ $lower == "YES" ] && [ $sym == 2 ]
     then
-        echo "symmetry c$sym has rmsd below 2.5A: $rmsd"
-        clashscore=`/data4/00_BIN/phenix_1.20/phenix-1.20.1-4487/build/bin/phenix.clashscore $outpath/${id%.pdb}_c${sym}.pdb | grep "clashscore" | cut -d'=' -f2`
+        echo -e "\n*************************\nsymmetry c$sym has rmsd below 2.5A: $rmsd\n*************************\n"
+        # The model has a C2 symmetry, no need to test other symmetries
+        break
     
     # Is the rmsd below 2.5A threshold?
     elif [ $lower == "YES" ]
     then
+        echo -e "\n*************************\nsymmetry c$sym has rmsd below 2.5A: $rmsd\n*************************\n"
         # check if the exact same rmsd is in values already computed. 
         # if so it means that we are just testing a multiple of a smaller symmetry 
         # (for ex if C3 real symmetry, the C6 and C9 have same rmsd but with clashes).
