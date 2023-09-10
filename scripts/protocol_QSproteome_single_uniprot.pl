@@ -44,10 +44,6 @@ print "pdb file: $PDBFILE\n" if $PDBFILE;
 print "json file: $JSON\n" if $JSON;
 print "out path: $OUTPATH\n" if $OUTPATH;
 
-#my $PDBFILE = $ARGV[0];
-#my $JSON = $ARGV[1];
-#my $OUTPATH = $ARGV[2];
-
 # Extract pdb id
 my $CODE = (fileparse($PDBFILE, qr/\.[^.]*/))[0];
 print "code: $CODE\n";
@@ -72,7 +68,6 @@ if (!-d $OUTPATH) {
 ## Calculate the contacts in the model
 ## Calculate clashes
 my @PDBFILES = ($PDBFILE);             
-
 process_contacts(@PDBFILES, "$OUTPATH/$CODE", 1);
 
 #### STEP 2
@@ -82,5 +77,5 @@ print "PDBFILE: $PDBFILE\n";
 print "JSON: $JSON\n";
 print "CONTACTFILE: $CONTACTFILE\n";
 print "OUTPATH: $OUTPATH\n";
-system("Rscript process_and_analyze_AF_model.R $CODE $JSON $CONTACTFILE $OUTPATH")
+system("Rscript process_and_analyze_AF_model.R $PDBFILE $JSON $CONTACTFILE $OUTPATH")
 
