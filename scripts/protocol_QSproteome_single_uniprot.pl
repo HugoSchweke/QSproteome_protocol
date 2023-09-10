@@ -17,12 +17,14 @@ require("$script_dir/functions_get_contacts.pm");
 my $PDBFILE;
 my $JSON;
 my $OUTPATH;
+my $reconstruct;
 
 # Define the command-line options
 GetOptions(
     'pdbfile=s'    => \$PDBFILE,    # Input file (string)
     'json=s'   => \$JSON,   # Output file (string)
     'outpath=s'    => \$OUTPATH,       # Verbose mode (flag)
+    'reconstruct!' => \$reconstruct,
 );
 
 # Check for required options
