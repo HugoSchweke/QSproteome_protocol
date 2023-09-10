@@ -60,5 +60,5 @@ data.best = data.frame(code = names(best.clash),
                        rmsd = best.rmsd,
                        clash.score = best.clash)
 print(data.best)
-
-write.csv(data.best, file = paste0("/data5/elevy/01_3dcomplexV0/results/005_syms/ananas_clashscore_bestsym_nodiso80_thr400/", data.best$code, "_best_sym_clash.csv"), quote = F, row.names = F)
+print(paste0(dirname(file), "/", data.best$code, "_best_sym_clash.csv"))
+write.csv(data.best, file = paste0(dirname(file), "/", data.best$code, "_best_sym_clash.csv"), quote = F, row.names = F)
