@@ -44,6 +44,17 @@ QSPROTEOME is a tool that requires a UNIX-based OS system. It is written in perl
 ## How to install QSPROTEOME
 [Go to the top](#Table-of-contents)
 
+```bash
+# clone QSPROTEONE on your machine
+git clone [https://github.com/HugoSchweke/QSproteome_protocol]
+
+# Install the Phenix software suite
+cd SURFMAP
+
+# Export the path to phenix
+cat "export PHENIX_CLASHSCORE=PATHTOPHENIX/build/bin/phenix.clashscore" >> ~/.bashrc
+source ~/.bashrc
+```
 
 
 # How it works
