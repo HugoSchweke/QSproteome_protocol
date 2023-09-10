@@ -27,7 +27,7 @@ QSPROTEOME is a protocol that detect homo-oligomerization from AlphaFold homodim
 
 2- Detect cyclic or trans symmetry and, if needed, reconstruct the full size complex with the AnAnas software ([2](#ref-2)).
 
-Optionnally, if the user has installed the AlphaFold Big Bang (link to ColabFold git?) , he can use this reconstructed complex as a template to model the full size complex.
+Optionnally, if the user has installed the AlphaFold Big Bang (link to ColabFold git?) , it is possible to use this reconstructed complex as a template to model the full size complex.
 
 </div>
 
