@@ -130,11 +130,11 @@ Once you have [installed the QSPROTEOME package](#how-to-install-qsproteome), yo
 <pre>usage: QSPROTEOME [-h] (-pdb PDB | -json JSON)
 
 options:
-  -h, --help                  show this help message and exit
-  -pdb PDB                    Path to an AlphaFold model PDB file. *required*
-  -json JSON                  Path to the json file produced by AlphaFold along with the model. *required*
-  -outpath OUTPATH            Path where all output files will be written. *required*
-  -reconstruct RECONSTRUCT    Boolean. If specified, the script will invoke AnAnas to reconstruct the full size complex (if needed), starting from the cropped models (nodiso3)
+  -h, --help       show this help message and exit
+  --pdb            Path to an AlphaFold model PDB file. *required*
+  --json           Path to the json file produced by AlphaFold along with the model. *required*
+  --outpath        Path where all output files will be written. *required*
+  --reconstruct    Boolean. If specified, the script will invoke AnAnas to reconstruct the full size complex (if needed), starting from the cropped models (nodiso3)
 </pre>
 </details>
 
