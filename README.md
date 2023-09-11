@@ -44,26 +44,30 @@ QSPROTEOME is a tool that requires a UNIX-based OS system. It is written in perl
 ## How to install QSPROTEOME
 [Go to the top](#Table-of-contents)
 
+- Clone the repository to your machine
 ```bash
 # clone QSPROTEONE on your machine
 git clone [https://github.com/HugoSchweke/QSproteome_protocol]
+```
 
-# Install the Phenix software suite
+- Install the Phenix software suite
 cd SURFMAP
 
-# Export the path to phenix
+- Export the path to phenix
+```bash
 cat "export PHENIX_CLASHSCORE=PATHTOPHENIX/build/bin/phenix.clashscore" >> ~/.bashrc
 source ~/.bashrc
+```
 
-# Install the AnAnaS software
+- Install the AnAnaS software
 You can download it here:[Link](https://team.inria.fr/nano-d/software/ananas/)
 
-
-# export the path to AnAnaS:
+- export the path to AnAnaS:
+```bash
 cat "export ANANAS=PATHTOANANAS/bin/ananas" >> ~/.bashrc
 source ~/.bashrc
-
 ```
+
 
 
 # How it works
