@@ -151,19 +151,39 @@ options:
 
 
 #### The example directory
-To guide the user in the usage of QSPROTEOME, we will make use of files that you can find in the `example/` directory. 
+To guide the user in the usage of QSPROTEOME, we will make use of files that you can find in the `example/` directory. To execute the script using the pdb file 
 
 ```bash
 cd scripts
 perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P32907_V1_1.pdb --json ../example/P32907_rank_1_model_1_ptm_seed_0_pae.json.bz2 --outpath ../../test
 ```
-With this command the script protocol_QSproteome_single_uniprot.pl will calculate the interaction probability and detect the best possible symmetry of the pdb file P32907_V1_1.pdb using structural information from the pdb file and information contained in the json file P32907_rank_1_model_1_ptm_seed_0_pae.json.bz2. It will write all the results in the directory ../../test
+With this command the script protocol_QSproteome_single_uniprot.pl will calculate the interaction probability and detect the best possible symmetry of the pdb file P32907_V1_1.pdb using structural information from the pdb file and information contained in the json file P32907_rank_1_model_1_ptm_seed_0_pae.json.bz2. It will write all the results in the directory ../../test. 
+
+Looking at the probability file:
+<details>
+<summary>P32907_V1_1_probability_scores.csv (.csv)</summary>
+
+<pre> 
+PAE1,PAE2,PAE3,PAE_interface,dimer_proba
+10.8,6.7,4,4.68,0.97528
+ </pre>
+</details>
+
+We can see that the dimer probability (column dimer_proba) is 0.97528. The interaction predicted by AlphaFold is thus most likely a physiological one.
+
 
 ```bash
 perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P32907_V1_1.pdb --json ../example/P32907_rank_1_model_1_ptm_seed_0_pae.json.bz2 --outpath ../../test --reconstruct
 ```
-This command is similar to the previous one, but the script will also reconstruct the full cyclic complex (if a symmetry superior to C2 is detected) based on the nodiso3 pdb file.
+This command is similar to the previous one, but the script will also reconstruct the full cyclic complex (if a symmetry superior to C2 is detected) based on the nodiso3 pdb file. Here, according to AnAnaS, the AlphaFold model is a homohexamer of C6 symmetry.
+In that case, no reconstruction using AnAnaS is necessary, as the full complex involves only six subunits.
 
+If we take the model P25298_V1_5.pdb 
+
+```bash
+perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P32907_V1_1.pdb --json ../example/P32907_rank_1_model_1_ptm_seed_0_pae.json.bz2 --outpath ../../test --reconstruct
+```
+Here the AlphaFold model is homodimer of C2 symmetry. In that case, no reconstruction using AnAnaS is necessary, as the full complex involves only two subunits.
 
 # Supporting the project
 [Go to the top](#Table-of-contents)
