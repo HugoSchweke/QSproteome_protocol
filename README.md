@@ -40,19 +40,18 @@ Optionnally, if the user has installed the AlphaFold Big Bang (link to ColabFold
 QSPROTEOME is a tool that requires a UNIX-based OS system. It is written in perl (version XX), R (version 4.3.1) and bash. It may optionally require AnAnas ([2](#ref-2)) and molprobity ([3](#ref-3)) if the user wants to reconstruct full homomeric complexes.
 
 
-
 ## How to install QSPROTEOME
 [Go to the top](#Table-of-contents)
 
-- Clone the repository to your machine
+- Install the following packages in R: igraph, stringr, bio3d, rjson, sys.
+
+- Clone the git repository to your machine
 ```bash
 # clone QSPROTEONE on your machine
 git clone [https://github.com/HugoSchweke/QSproteome_protocol]
 ```
 
-
 - Install the Phenix software suite. You can download it here: [Link](https://phenix-online.org/download/)
-
 
 - Export the path to phenix
 ```bash
@@ -60,16 +59,13 @@ cat "export PHENIX_CLASHSCORE=PATHTOPHENIX/build/bin/phenix.clashscore" >> ~/.ba
 source ~/.bashrc
 ```
 
-
 - Install the AnAnaS software. You can download it here: [Link](https://team.inria.fr/nano-d/software/ananas/)
-
 
 - export the path to AnAnaS:
 ```bash
 cat "export ANANAS=PATHTOANANAS/bin/ananas" >> ~/.bashrc
 source ~/.bashrc
 ```
-
 
 
 # How it works
