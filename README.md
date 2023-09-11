@@ -1,7 +1,7 @@
 # QSproteome
 
 
-This repository contains the scripts and protocol from ([1](#ref-1)) 
+This repository contains the scripts and protocol from  ”An atlas of protein homo-oligomerization across domains of life.”, Schweke et al ([1](#ref-1)).
 
 It contains all the necessary scripts to predict homomerization, detect symmetry and reconstruct full size complex from an AlphaFold homodimeric model.
 
@@ -180,16 +180,18 @@ PAE1,PAE2,PAE3,PAE_interface,dimer_proba
 </details>
 
 We can see that the dimer probability (column dimer_proba) is 0.97528. The interaction predicted by AlphaFold is thus most likely a physiological one. 
-P32907_V1_1 forms a homomer. Here we did not specified the --reconstruct option, so we have no information about the symmetry of this homomer, and the full size complex is not reconstructed. We can do it using the --reconstruct option:
+P32907_V1_1 forms a homomer. Here we did not specified the --reconstruct option, so we have no information about the symmetry of this homomer, and the full size complex is not reconstructed. 
+
+We can do it using the --reconstruct option:
 
 ```bash
 perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P32907_V1_1.pdb --json ../example/P32907_rank_1_model_1_ptm_seed_0_pae.json.bz2 --outpath ../../test --reconstruct
 ```
-This command is similar to the previous one, but the script will also reconstruct the full cyclic complex (if a symmetry superior to C2 is detected) based on the nodiso3 pdb file. Here, according to AnAnaS, the AlphaFold model is a homohexamer of C6 symmetry. 
+This command is similar to the previous one, but the script will also detect the best matching cyclic symmetry, and, if needed, reconstruct the full cyclic complex (if a symmetry superior to C2 is detected) based on the nodiso3 pdb file.
 
 <br>
 
-Looking at *P32907_V1_1_nodiso3_all_csym.dat*, the file containing the result of the symmetry detection with AnAnaS:
+Let's look at *P32907_V1_1_nodiso3_all_csym.dat*, the file containing the result of the symmetry detection with AnAnaS:
 
 <details>
 <summary>P32907_V1_1_nodiso3_all_csym.dat (.dat)</summary>
