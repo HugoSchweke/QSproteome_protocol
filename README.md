@@ -53,7 +53,7 @@ git clone [https://github.com/HugoSchweke/QSproteome_protocol]
 
 - Install the Phenix software suite. You can download it here: [Link](https://phenix-online.org/download/)
 
-- Export the path to phenix
+- Export the path to phenix in your bashrc:
 ```bash
 cat "export PHENIX_CLASHSCORE=PATHTOPHENIX/build/bin/phenix.clashscore" >> ~/.bashrc
 source ~/.bashrc
@@ -61,7 +61,7 @@ source ~/.bashrc
 
 - Install the AnAnaS software. You can download it here: [Link](https://team.inria.fr/nano-d/software/ananas/)
 
-- export the path to AnAnaS:
+- export the path to AnAnaS in your bashrc:
 ```bash
 cat "export ANANAS=PATHTOANANAS/bin/ananas" >> ~/.bashrc
 source ~/.bashrc
