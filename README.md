@@ -162,7 +162,6 @@ With this command the script protocol_QSproteome_single_uniprot.pl will calculat
 Now, let's have a look at the results. In the probability file:
 <details>
 <summary>P32907_V1_1_probability_scores.csv (.csv)</summary>
-
 <pre> 
 PAE1,PAE2,PAE3,PAE_interface,dimer_proba
 10.8,6.7,4,4.68,0.97528
@@ -171,12 +170,36 @@ PAE1,PAE2,PAE3,PAE_interface,dimer_proba
 
 We can see that the dimer probability (column dimer_proba) is 0.97528. The interaction predicted by AlphaFold is thus most likely a physiological one.
 
+Looking at *P32907_V1_1_nodiso3_all_csym.dat*, the file containing the result of the symmetry detection with AnAnaS:
+
+<details>
+<summary>P32907_V1_1_nodiso3_all_csym.dat (.dat)</summary>
+<pre> 
+symmetry av.rmsd clashscore
+c2 18.620165 NA
+c3 11.111322 NA
+c4 6.065964 128.54
+c5 2.808240 85.27
+c6 0.654587 44.23
+c7 1.110083 47.91
+c8 2.284813 61.57
+c9 3.210861 68.65
+c10 2.808240 NA
+c11 1.610034 607.33
+c12 0.654587 NA
+</pre>
+</details>
+
+We can see that, according to AnAnaS, c6 symmetry has the lowest rmsd, as well as the lowest clashscore. P32907_V1_1 forms a homohexamer. Here we did not specified the --reconstruct option, so the full size complex is not reconstructed. We can do it with the following command:
+
+<br>
 
 ```bash
 perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P32907_V1_1.pdb --json ../example/P32907_rank_1_model_1_ptm_seed_0_pae.json.bz2 --outpath ../../test --reconstruct
 ```
-This command is similar to the previous one, but the script will also reconstruct the full cyclic complex (if a symmetry superior to C2 is detected) based on the nodiso3 pdb file. Here, according to AnAnaS, the AlphaFold model is a homohexamer of C6 symmetry.
-In that case, no reconstruction using AnAnaS is necessary, as the full complex involves only six subunits.
+This command is similar to the previous one, but the script will also reconstruct the full cyclic complex (if a symmetry superior to C2 is detected) based on the nodiso3 pdb file. Here, according to AnAnaS, the AlphaFold model is a homohexamer of C6 symmetry. 
+
+<br>
 
 If we take the model P25298_V1_5.pdb 
 
