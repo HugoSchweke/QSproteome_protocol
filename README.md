@@ -200,15 +200,15 @@ PAE1,PAE2,PAE3,PAE_interface,dimer_proba
  </pre>
 </details>
 
-We can see that the dimer probability (column dimer_proba) is 0.97528. The interaction predicted by AlphaFold is thus most likely a physiological one. 
-P32907_V1_1 forms a homomer. Here we did not specified the --reconstruct option, so we have no information about the symmetry of this homomer, and the full size complex is not reconstructed. 
+We can see that the dimer probability (column dimer_proba) is 0.97528. The interaction predicted by AlphaFold is thus most likely a physiological one, thus *P32907_V1_1* forms a homomer. 
+Here we did not specified the --reconstruct option, so we have no information about the symmetry of this homomer, and the full size complex is not reconstructed. 
 
-We can do it using the --reconstruct option:
+We can get these informations using the --reconstruct option:
 
 ```bash
 perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P32907_V1_1.pdb --json ../example/P32907_rank_1_model_1_ptm_seed_0_pae.json.bz2 --outpath ../../test --reconstruct
 ```
-This command is similar to the previous one, but the script will also detect the best matching cyclic symmetry, and, if needed, reconstruct the full cyclic complex (if a symmetry superior to C2 is detected) based on the nodiso3 pdb file.
+This command is similar to the previous one, but the script will also detect the best matching cyclic symmetry, and, if needed (i.e., if a symmetry superior to C2 is detected), reconstruct the full cyclic complex based on the nodiso3 pdb file.
 
 <br>
 
