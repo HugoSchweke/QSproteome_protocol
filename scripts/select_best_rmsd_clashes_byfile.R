@@ -62,3 +62,15 @@ data.best = data.frame(code = names(best.clash),
 print(data.best)
 print(paste0(dirname(file), "/", data.best$code, "_best_sym_clash.csv"))
 write.csv(data.best, file = paste0(dirname(file), "/", data.best$code, "_best_sym_clash.csv"), quote = F, row.names = F)
+
+pdbnodiso3 = paste0(dirname(file), "_", data.best$code, "_nodiso3.pdb")
+sym=paste0("c", best.sym)
+outpdb = paste0(dirname(file), code, "_", sym, ".pdb")
+
+cat("pdb nodiso3: ", pdbnodiso3, "\n")
+cat("symmetry: ", sym, "\n")
+cat("outfile: ", outpdb, "\n")
+
+if (best.sym != "NPS" & best.sym != "2") {
+  system(paste("$ANANAS" , pdbnodiso3, outpdb, sep = " "))
+}
