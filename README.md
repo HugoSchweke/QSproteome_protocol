@@ -79,7 +79,9 @@ source ~/.bashrc
 QSPROTEOME needs in input an AlphaFold model of a homodimer in pdb format, as well as the associated json file provided by AF.
 <br>
 
-Six outputs are generated: 
+Six outputs are generated, plus two additional output if the user requested the reconstruction of the full size complex: 
+
+**Main outputs**
 - A pdb file where residues are filtered out according of to the *nodiso1* definition (residues with a pLDDT score below 40 are filtered out)
 - A pdb file where residues are filtered out according of to the *nodiso2* definition (starting from the nodiso1 file, a median pLDDT score is computed, and residues with a pLDDT score
 below 75 and below the median value are discarded.)
@@ -159,6 +161,9 @@ PAE1,PAE2,PAE3,PAE_interface,dimer_proba
 - dimer_proba = Probability of the interaction to be a physiological one.
  </pre>
 </details>
+
+**Optional outputs**
+
 
 # Usage of QSPROTEOME
 [Go to the top](#Table-of-contents)
