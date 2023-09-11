@@ -51,9 +51,7 @@ git clone [https://github.com/HugoSchweke/QSproteome_protocol]
 ```
 
 
-- Install the Phenix software suite
-cd SURFMAP
-
+- Install the Phenix software suite. You can download it here: [Link](https://phenix-online.org/download/)
 
 
 - Export the path to phenix
@@ -63,8 +61,7 @@ source ~/.bashrc
 ```
 
 
-- Install the AnAnaS software
-You can download it here:[Link](https://team.inria.fr/nano-d/software/ananas/)
+- Install the AnAnaS software. You can download it here: [Link](https://team.inria.fr/nano-d/software/ananas/)
 
 
 - export the path to AnAnaS:
