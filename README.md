@@ -214,7 +214,7 @@ c12 0.654587 NA
 
 We can see that, according to AnAnaS, c6 symmetry has the lowest rmsd, as well as the lowest clashscore (please take note that there are no clashscore values for c2 and c3 because the rmsd is too high (>7A) and for c10 and c12 because those have exactly the same rmsd than c5 and c6, meaning that in that case they are just two c5 or c6 superposed, respectively). 
 <br>
-P32907_V1_1 forms a homohexamer. The complex reconstructed with AnAnaS using the trimmed file P32907_V1_1_nodiso3.pdb can be found
+P32907_V1_1 forms a homohexamer. The complex reconstructed with AnAnaS using the trimmed file P32907_V1_1_nodiso3.pdb can be found in the output directory under the name *P32907_V1_1_nodiso3_c6.pdb*.
 
 Please take not that using such a trimmed pdb file  is important, as a reconstructed complex using the full length model can lead to a lot of clashes, due to the low plddt flexible regions. 
 
