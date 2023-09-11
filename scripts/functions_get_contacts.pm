@@ -1770,18 +1770,15 @@ sub process_contacts($$$){
   
 
 
-  print("Before loop\n"); ## Hugo
-  print("array pdb files: $to_proceed_file\n");
+  #print("array pdb files: $to_proceed_file\n");
 
   my @to_proceed = ($to_proceed_file);
-  print("to_proceed: @to_proceed\n");
+  #print("to_proceed: @to_proceed\n");
 
   foreach $pdb_name (@to_proceed){
-      print("Inside loop\n"); ## Hugo
+      #print "pdb name: $pdb_name\n";
 
-      print "pdb name: $pdb_name\n";
-
-      print STDERR $B4."Processing contacts for ".(sprintf "%02d", $Num)." .. ".(sprintf "%06d", $counter)."/$#{to_proceed}\r".$AFTER;
+      #print STDERR $B4."Processing contacts for ".(sprintf "%02d", $Num)." .. ".(sprintf "%06d", $counter)."/$#{to_proceed}\r".$AFTER;
 
       #print STDERR "Processing: PDB = $pdb_name\n" ;
 
@@ -1919,10 +1916,10 @@ sub process_contacts($$$){
 
       print OUT_FULL $PDB_CONTACTS ;
 
-      if($counter == $#{to_proceed}){
-	  print STDERR $B4."Processing contacts for ".(sprintf "%02d", $Num)." .. ".(sprintf "%06d", $counter)."/$#{to_proceed} --- Finnished at ".localtime()."\b".$AFTER;
+      #if($counter == $#{to_proceed}){
+      #	  print STDERR $B4."Processing contacts for ".(sprintf "%02d", $Num)." .. ".(sprintf "%06d", $counter)."/$#{to_proceed} --- Finished at ".localtime()."\b".$AFTER;
 	  #print STDERR "Processing contacts .. ".(sprintf "%06d", $counter)."/$#{$to_proceed}\n";
-      }
+          #}
       $counter++;
   }
   
