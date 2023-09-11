@@ -159,7 +159,7 @@ perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P32907_V1_1.pdb --js
 ```
 With this command the script protocol_QSproteome_single_uniprot.pl will calculate the interaction probability and detect the best possible symmetry of the pdb file P32907_V1_1.pdb using structural information from the pdb file and information contained in the json file P32907_rank_1_model_1_ptm_seed_0_pae.json.bz2. It will write all the results in the directory ../../test. 
 
-Looking at the probability file:
+Now, let's have a look at the results. In the probability file:
 <details>
 <summary>P32907_V1_1_probability_scores.csv (.csv)</summary>
 
