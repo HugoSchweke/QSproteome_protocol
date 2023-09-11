@@ -170,6 +170,7 @@ PAE1,PAE2,PAE3,PAE_interface,dimer_proba
 
 We can see that the dimer probability (column dimer_proba) is 0.97528. The interaction predicted by AlphaFold is thus most likely a physiological one.
 
+
 Looking at *P32907_V1_1_nodiso3_all_csym.dat*, the file containing the result of the symmetry detection with AnAnaS:
 
 <details>
@@ -187,8 +188,9 @@ c9 3.210861 68.65
 c10 2.808240 NA
 c11 1.610034 607.33
 c12 0.654587 NA
-</pre>
+ </pre>
 </details>
+
 
 We can see that, according to AnAnaS, c6 symmetry has the lowest rmsd, as well as the lowest clashscore. P32907_V1_1 forms a homohexamer. Here we did not specified the --reconstruct option, so the full size complex is not reconstructed. We can do it with the following command:
 
