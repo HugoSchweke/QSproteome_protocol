@@ -1,7 +1,7 @@
 # QSproteome
 
 
-This repository contains the scripts and protocol from  ”An atlas of protein homo-oligomerization across domains of life.”, Schweke et al ([1](#ref-1)).
+This repository contains the scripts and protocol from  *”An atlas of protein homo-oligomerization across domains of life.”*, Schweke et al ([1](#ref-1)).
 
 It contains all the necessary scripts to predict homomerization, detect symmetry and reconstruct full size complex from an AlphaFold homodimeric model.
 
