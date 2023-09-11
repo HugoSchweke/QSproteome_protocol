@@ -1,8 +1,7 @@
 use strict;
 use POSIX;
-#require("../00_general/seq_general.pm");
 require("/media/elusers/users/hugo/15_alphafold/37_revision_Cell/general.pm");
-#require("../00_general/CPLX_STATIC.pl");
+
 
 my @aas = ("GLY", "ALA", "VAL", "LEU", "ILE", "SER", "THR", "ASP", "ASN", "LYS", "GLU", "GLN", "ARG", "HIS", "PHE", "CYS", "TRP", "TYR", "MET", "PRO");
 my @aa2 = ("G"  , "A",   "V",   "L",   "I",   "S",   "T",   "D",   "N",   "K",   "E",   "Q",   "R",   "H",   "F",   "C",   "W",   "Y",   "M",   "P");
@@ -414,10 +413,6 @@ sub process_contacts($$$){
 
       print OUT_FULL $PDB_CONTACTS ;
 
-      #if($counter == $#{to_proceed}){
-      #	  print STDERR $B4."Processing contacts for ".(sprintf "%02d", $Num)." .. ".(sprintf "%06d", $counter)."/$#{to_proceed} --- Finished at ".localtime()."\b".$AFTER;
-	  #print STDERR "Processing contacts .. ".(sprintf "%06d", $counter)."/$#{$to_proceed}\n";
-          #}
       $counter++;
   }
   
