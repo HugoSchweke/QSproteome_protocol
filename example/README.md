@@ -1,5 +1,5 @@
 
-This directory contains two files that can be use as a test case for the homomer prediction workflow:
+This directory contains three pdb files and the three json files that can be use as a test case for the homomer prediction workflow:
 
 #### XXXXXX_V1_5.pdb 
 
