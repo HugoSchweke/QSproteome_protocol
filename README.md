@@ -219,8 +219,29 @@ This command is similar to the previous one, but the script will also reconstruc
 If we take the model P25298_V1_5.pdb 
 
 ```bash
-perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P32907_V1_1.pdb --json ../example/P32907_rank_1_model_1_ptm_seed_0_pae.json.bz2 --outpath ../../test --reconstruct
+perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P25298_V1_5.pdb --json ../example/P25298_rank_1_model_5_ptm_seed_0_pae.json.bz2 --outpath ../../test --reconstruct
 ```
+
+Now let's have a look at the symmetry file:
+
+<details>
+<summary>P32907_V1_1_nodiso3_all_csym.dat (.dat)</summary>
+<pre> 
+symmetry av.rmsd clashscore
+c2 18.620165 NA
+c3 11.111322 NA
+c4 6.065964 128.54
+c5 2.808240 85.27
+c6 0.654587 44.23
+c7 1.110083 47.91
+c8 2.284813 61.57
+c9 3.210861 68.65
+c10 2.808240 NA
+c11 1.610034 607.33
+c12 0.654587 NA
+ </pre>
+</details>
+
 Here the AlphaFold model is homodimer of C2 symmetry. In that case, no reconstruction using AnAnaS is necessary, as the full complex involves only two subunits.
 
 # Supporting the project
