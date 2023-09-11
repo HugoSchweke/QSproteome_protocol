@@ -203,7 +203,9 @@ c12 0.654587 NA
 </details>
 
 
-We can see that, according to AnAnaS, c6 symmetry has the lowest rmsd, as well as the lowest clashscore. P32907_V1_1 forms a homohexamer. Here we did not specified the --reconstruct option, so the full size complex is not reconstructed. We can do it with the following command:
+We can see that, according to AnAnaS, c6 symmetry has the lowest rmsd, as well as the lowest clashscore (please take note that there are no clashcore values for c2 and c3 because the rmsd is to high (>7A) and for c10 and c12 because those have exactly the same rmsd than c5 and c6, meaning that in that case they are just two c5 or c6 superposed, respectively). 
+<br>
+P32907_V1_1 forms a homohexamer. Here we did not specified the --reconstruct option, so the full size complex is not reconstructed. We can do it with the following command:
 
 <br>
 
