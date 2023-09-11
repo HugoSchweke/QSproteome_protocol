@@ -179,8 +179,15 @@ PAE1,PAE2,PAE3,PAE_interface,dimer_proba
  </pre>
 </details>
 
-We can see that the dimer probability (column dimer_proba) is 0.97528. The interaction predicted by AlphaFold is thus most likely a physiological one.
+We can see that the dimer probability (column dimer_proba) is 0.97528. The interaction predicted by AlphaFold is thus most likely a physiological one. 
+P32907_V1_1 forms a homomer. Here we did not specified the --reconstruct option, so we have no information about the symmetry of this homomer, and the full size complex is not reconstructed. We can do it using the --reconstruct option:
 
+```bash
+perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P32907_V1_1.pdb --json ../example/P32907_rank_1_model_1_ptm_seed_0_pae.json.bz2 --outpath ../../test --reconstruct
+```
+This command is similar to the previous one, but the script will also reconstruct the full cyclic complex (if a symmetry superior to C2 is detected) based on the nodiso3 pdb file. Here, according to AnAnaS, the AlphaFold model is a homohexamer of C6 symmetry. 
+
+<br>
 
 Looking at *P32907_V1_1_nodiso3_all_csym.dat*, the file containing the result of the symmetry detection with AnAnaS:
 
@@ -205,16 +212,13 @@ c12 0.654587 NA
 
 We can see that, according to AnAnaS, c6 symmetry has the lowest rmsd, as well as the lowest clashscore (please take note that there are no clashscore values for c2 and c3 because the rmsd is too high (>7A) and for c10 and c12 because those have exactly the same rmsd than c5 and c6, meaning that in that case they are just two c5 or c6 superposed, respectively). 
 <br>
-P32907_V1_1 forms a homohexamer. Here we did not specified the --reconstruct option, so the full size complex is not reconstructed. We can do it with the following command:
+P32907_V1_1 forms a homohexamer. The complex reconstructed with AnAnaS using the trimmed file P32907_V1_1_nodiso3.pdb can be found
+
+Please take not that using such a trimmed pdb file  is important, as a reconstructed complex using the full length model can lead to a lot of clashes, due to the low plddt flexible regions. 
 
 <br>
 
-```bash
-perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P32907_V1_1.pdb --json ../example/P32907_rank_1_model_1_ptm_seed_0_pae.json.bz2 --outpath ../../test --reconstruct
-```
-This command is similar to the previous one, but the script will also reconstruct the full cyclic complex (if a symmetry superior to C2 is detected) based on the nodiso3 pdb file. Here, according to AnAnaS, the AlphaFold model is a homohexamer of C6 symmetry. 
 
-<br>
 
 If we take the model P25298_V1_5.pdb 
 
@@ -228,17 +232,7 @@ Now let's have a look at the symmetry file:
 <summary>P32907_V1_1_nodiso3_all_csym.dat (.dat)</summary>
 <pre> 
 symmetry av.rmsd clashscore
-c2 18.620165 NA
-c3 11.111322 NA
-c4 6.065964 128.54
-c5 2.808240 85.27
-c6 0.654587 44.23
-c7 1.110083 47.91
-c8 2.284813 61.57
-c9 3.210861 68.65
-c10 2.808240 NA
-c11 1.610034 607.33
-c12 0.654587 NA
+c2 0.125649 NA
  </pre>
 </details>
 
