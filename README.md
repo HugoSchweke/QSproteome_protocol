@@ -54,6 +54,15 @@ cd SURFMAP
 # Export the path to phenix
 cat "export PHENIX_CLASHSCORE=PATHTOPHENIX/build/bin/phenix.clashscore" >> ~/.bashrc
 source ~/.bashrc
+
+# Install the AnAnaS software
+You can download it here:[Link](https://team.inria.fr/nano-d/software/ananas/)
+
+
+# export the path to AnAnaS:
+cat "export ANANAS=PATHTOANANAS/bin/ananas" >> ~/.bashrc
+source ~/.bashrc
+
 ```
 
 
