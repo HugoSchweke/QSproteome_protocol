@@ -1,6 +1,5 @@
 rm(list=ls())
 
-suppressMessages(library(RMySQL))
 suppressMessages(library(igraph))
 suppressMessages(library(stringr))
 suppressMessages(library(bio3d))

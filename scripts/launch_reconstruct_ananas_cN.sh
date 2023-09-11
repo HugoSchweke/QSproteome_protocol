@@ -36,6 +36,7 @@ do
     then
         echo -e "\n*************************\nsymmetry c$sym has rmsd below 2.5A: $rmsd\n*************************\n"
         # The model has a C2 symmetry, no need to test other symmetries
+        echo c$sym $rmsd NA >> $outfile
         break
     
     # Is the rmsd below 2.5A threshold?

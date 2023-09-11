@@ -1758,7 +1758,7 @@ sub process_contacts($$$){
   if($DO_GNM){
     open(OUT_GNM, ">$out"."_res_GNM.txt");
   }
-  open(OUT_FULL, ">$out"."_FULL.txt");
+  open(OUT_FULL, ">$out"."_FULL_CONTACT.txt");
   #open(OUT_ATOM, ">$out"."_ATOM.txt");
 
   my ($pdb_name, $pdb_short, $res_n1, $res_n2, @chains, $ch_i, $ch_j, $x, $y, $z, $resid_num, $contact_list_big_rough, $contact_list_big, $contact_list_small, $contact, @pdb_array, $pdbs) ;

@@ -79,5 +79,13 @@ print "PDBFILE: $PDBFILE\n";
 print "JSON: $JSON\n";
 print "CONTACTFILE: $CONTACTFILE\n";
 print "OUTPATH: $OUTPATH\n";
-system("Rscript process_and_analyze_AF_model.R $PDBFILE $JSON $CONTACTFILE $OUTPATH")
+system("Rscript process_and_analyze_AF_model.R $PDBFILE $JSON $CONTACTFILE $OUTPATH");
 
+# Test if the option is specified
+if ($reconstruct) {
+    print "The user specified the --reconstruct option.\n";
+    system("bash launch_reconstruct_ananas_cN.sh $OUTPATH/${CODE}_nodiso3.pdb $OUTPATH");
+    system("Rscript select_best_rmsd_clashes_byfile.R $OUTPATH/${CODE}_nodiso3_all_csym.dat");
+} else {
+    print "The user did not specify the --reconstruct option => full size complex not reconstructed\n";
+}
