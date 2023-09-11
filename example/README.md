@@ -1,10 +1,10 @@
 
 This directory contains two files that can be use as a test case for the homomer prediction workflow:
 
-#### Q8WV44_V1_5.pdb 
+#### XXXXXX_V1_5.pdb 
 
 pdb file of a homodimeric model created with AlphaFold2
 
-#### Q8WV44_rank_2_model_5_ptm_seed_0_pae.json.bz2
+#### XXXXXX_rank_Y_model_Z_ptm_seed_0_pae.json.bz2
 
 A bz2 archive of the json file created by AF2, along with the pdb files of the models.
