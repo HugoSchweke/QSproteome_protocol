@@ -163,6 +163,30 @@ PAE1,PAE2,PAE3,PAE_interface,dimer_proba
 </details>
 
 **Optional outputs**
+- a file containing the symmetry detection result. It contains one line per symmetry tested.
+<details>
+<summary>Example of a symmetry file (.csv)</summary>
+<pre> 
+symmetry av.rmsd clashscore
+c2 18.620165 NA
+c3 11.111322 NA
+c4 6.065964 128.54
+c5 2.808240 85.27
+c6 0.654587 44.23
+c7 1.110083 47.91
+c8 2.284813 61.57
+c9 3.210861 68.65
+c10 2.808240 NA
+c11 1.610034 607.33
+c12 0.654587 NA
+
+- symmetry = symmetry tested
+- av.rmsd = rmsd of the symmetry
+- clashscore = clash score calculated by molprobity on the symmetrized complex
+ </pre>
+</details>
+
+- If a symmetry involving more than two subunits is detected, a pdb file corresponding to the full complex is written.
 
 
 # Usage of QSPROTEOME
