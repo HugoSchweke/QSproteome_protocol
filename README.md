@@ -51,6 +51,8 @@ QSPROTEOME is a tool that requires a UNIX-based OS system. It is written in perl
 git clone [https://github.com/HugoSchweke/QSproteome_protocol]
 ```
 
+To enable symmetry detection and full size complexes reconstruction, AnAnaS and the Phenix software suite must be installed as follow: 
+
 - Install the Phenix software suite. You can download it here: [Link](https://phenix-online.org/download/)
 
 - Export the path to phenix in your bashrc:
@@ -77,7 +79,7 @@ source ~/.bashrc
 QSPROTEOME needs in input an AlphaFold model of a homodimer in pdb format, as well as the associated json file provided by AF.
 <br>
 
-Five outputs are generated: 
+Six outputs are generated: 
 - A pdb file where residues are filtered out according of to the *nodiso1* definition (residues with a pLDDT score below 40 are filtered out)
 - A pdb file where residues are filtered out according of to the *nodiso2* definition (starting from the nodiso1 file, a median pLDDT score is computed, and residues with a pLDDT score
 below 75 and below the median value are discarded.)
@@ -139,6 +141,25 @@ Q8WV44_V1_5 B B 13 16 T E 1 3.502 3.502 3.502
  </pre>
 </details>
 
+
+- a probability scores file containing scores such as interaction probability (i.e. the probability that the interaction modeled by AlphaFold is a physiological one).
+
+<details>
+<summary>Example of a probability scores file (.csv)</summary>
+
+<pre> 
+PAE1,PAE2,PAE3,PAE_interface,dimer_proba
+10.8,6.7,4,4.68,0.97528
+
+
+- PAE1 = PAE score of the nodiso1 residues
+- PAE2 = PAE score of the nodiso2 residues
+- PAE3 = PAE score of the nodiso3 residues
+- PAE_interface = PAE score of the interface residues
+- dimer_proba = Probability of the interaction to be a physiological one.
+ </pre>
+</details>
+
 # Usage of QSPROTEOME
 [Go to the top](#Table-of-contents)
 
@@ -179,15 +200,15 @@ PAE1,PAE2,PAE3,PAE_interface,dimer_proba
  </pre>
 </details>
 
-We can see that the dimer probability (column dimer_proba) is 0.97528. The interaction predicted by AlphaFold is thus most likely a physiological one. 
-P32907_V1_1 forms a homomer. Here we did not specified the --reconstruct option, so we have no information about the symmetry of this homomer, and the full size complex is not reconstructed. 
+We can see that the dimer probability (column dimer_proba) is 0.97528. The interaction predicted by AlphaFold is thus most likely a physiological one, thus *P32907_V1_1* forms a homomer. 
+Here we did not specified the --reconstruct option, so we have no information about the symmetry of this homomer, and the full size complex is not reconstructed. 
 
-We can do it using the --reconstruct option:
+We can get these informations using the --reconstruct option:
 
 ```bash
 perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P32907_V1_1.pdb --json ../example/P32907_rank_1_model_1_ptm_seed_0_pae.json.bz2 --outpath ../../test --reconstruct
 ```
-This command is similar to the previous one, but the script will also detect the best matching cyclic symmetry, and, if needed, reconstruct the full cyclic complex (if a symmetry superior to C2 is detected) based on the nodiso3 pdb file.
+This command is similar to the previous one, but the script will also detect the best matching cyclic symmetry, and, if needed (i.e., if a symmetry superior to C2 is detected), reconstruct the full cyclic complex based on the nodiso3 pdb file.
 
 <br>
 
