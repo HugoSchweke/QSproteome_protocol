@@ -158,7 +158,7 @@ PAE1,PAE2,PAE3,PAE_interface,dimer_proba
 - PAE2 = PAE score of the nodiso2 residues
 - PAE3 = PAE score of the nodiso3 residues
 - PAE_interface = PAE score of the interface residues
-- dimer_proba = Probability of the interaction to be a physiological one.
+- dimer_proba = Probability of the interaction to be a physiological one
  </pre>
 </details>
 
@@ -179,6 +179,7 @@ c9 3.210861 68.65
 c10 2.808240 NA
 c11 1.610034 607.33
 c12 0.654587 NA
+
 
 - symmetry = symmetry tested
 - av.rmsd = rmsd of the symmetry
