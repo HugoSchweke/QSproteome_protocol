@@ -41,8 +41,8 @@ csv file that contain five columns:
 #### Q8WV44_V1_5_probability_scores.csv:
 
 Contains five probability scores.
-- PAE1 = 
-- PAE2 = 
-- PAE3 = 
+- PAE1 = PAE score of the nodiso1 residues
+- PAE2 = PAE score of the nodiso2 residues
+- PAE3 = PAE score of the nodiso3 residues
 - PAE_interface = probability of the model to be a physiological homomer based on a logistic regression model using the PAE4 metric (mean PAE values of interchain contacts in the core structures).
 - dimer_proba = probability that the dimer is a physiological one.
