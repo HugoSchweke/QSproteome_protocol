@@ -1,9 +1,5 @@
 use strict ;
 use Cwd;
-use FileHandle;
-use File::stat;
-use File::Copy;
-use File::Basename;
 use Term::Cap;
 use POSIX;
 
