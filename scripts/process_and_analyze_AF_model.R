@@ -327,5 +327,6 @@ df_towrite = data.frame(PAE1 = PAE1,
                         PAE_interface = ct.score2,
                         dimer_proba = round(proba.all,5))
 
-write.csv(df_towrite, paste0(OUTPATH, "/", CODE, "_probability_scores.csv"),
+print(paste0(OUTPATH, "/", CODE, "_probability_scores.csv"))
+write.csv(df_towrite, paste0(getwd(), "/", OUTPATH, "/", CODE, "_probability_scores.csv"),
           quote = F, row.names = F)
