@@ -273,7 +273,7 @@ Please take not that using such a trimmed pdb file  is important, as a reconstru
 
 
 
-If we take the model P25298_V1_5.pdb 
+Now let's run the same command with the model P25298_V1_5.pdb:
 
 ```bash
 perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P25298_V1_5.pdb --json ../example/P25298_rank_1_model_5_ptm_seed_0_pae.json.bz2 --outpath ../../test --reconstruct
