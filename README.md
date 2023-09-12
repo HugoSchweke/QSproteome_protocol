@@ -158,7 +158,7 @@ PAE1,PAE2,PAE3,PAE_interface,dimer_proba
 - PAE2 = PAE score of the nodiso2 residues
 - PAE3 = PAE score of the nodiso3 residues
 - PAE_interface = PAE score of the interface residues
-- dimer_proba = Probability of the interaction to be a physiological one.
+- dimer_proba = Probability of the interaction to be a physiological one
  </pre>
 </details>
 
@@ -179,6 +179,7 @@ c9 3.210861 68.65
 c10 2.808240 NA
 c11 1.610034 607.33
 c12 0.654587 NA
+
 
 - symmetry = symmetry tested
 - av.rmsd = rmsd of the symmetry
@@ -272,7 +273,7 @@ Please take not that using such a trimmed pdb file  is important, as a reconstru
 
 
 
-If we take the model P25298_V1_5.pdb 
+Now let's run the same command with the model P25298_V1_5.pdb:
 
 ```bash
 perl protocol_QSproteome_single_uniprot.pl --pdb ../example/P25298_V1_5.pdb --json ../example/P25298_rank_1_model_5_ptm_seed_0_pae.json.bz2 --outpath ../../test --reconstruct
