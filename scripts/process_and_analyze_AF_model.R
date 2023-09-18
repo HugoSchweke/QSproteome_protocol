@@ -57,7 +57,7 @@ OUTPATH = args[4]
 # JSONFILE = "../example/P25298_rank_3_model_5_ptm_seed_0_pae.json.bz2"
 # CONTACTS = read.table("../../test/P25298_V1_5_FULL_CONTACT.txt")
 # OUTPATH = "../../test/"
-## print(head(CONTACTS))
+# print(head(CONTACTS))
 
 colnames(CONTACTS) = c("code", "chain1", "chain2", "res1", "res2", 
                        "resname1", "resname2", "n_contacts", "dmin", "dmax", "davg")
@@ -66,11 +66,11 @@ CONTACTS$resid2 = paste(CONTACTS$chain2, CONTACTS$res2, sep = "_")
 CONTACTSALL = CONTACTS # intra and inter-chains contacts
 CONTACTS = CONTACTS[CONTACTS$chain1 != CONTACTS$chain2,] # we only check inter-chains contacts
 
+n_con_int = c(unique(CONTACTS$res1), unique(CONTACTS$res2))
 Nclash_ct = sum(CONTACTS$dmin < 2)
 Nclash_ct_int = sum(CONTACTS$dmin < 2 & (CONTACTS$chain1 != CONTACTS$chain2))
 Nclash_res = length(unique(CONTACTS$res1[CONTACTS$dmin < 2]))
 Nclash_res_int = length(unique(CONTACTS$res1[CONTACTS$dmin < 2 & (CONTACTS$chain1 != CONTACTS$chain2)]))
-
 
 #################### READ PDB FILE ########################
 
@@ -321,11 +321,20 @@ write.csv(data.all.diso, paste0(OUTPATH, "/", CODE, "_diso_info.csv"),
           quote = F, row.names = F)
 
 ## 3- A file with X column for all the PAE score etc
-df_towrite = data.frame(PAE1 = PAE1,
-                        PAE2 = PAE2,
-                        PAE3 = PAE3,
-                        PAE_interface = ct.score2,
-                        dimer_proba = round(proba.all,5))
+if (Nclash_res_int/length(n_con_int) > 0.1 | Nclash_res/nrow(pdb_dataframe_plddt)>0.1) {
+  print("The model presents too many clashes, cannot be a homomer.dimer_proba set to 0\n")
+  df_towrite = data.frame(PAE1 = PAE1,
+                          PAE2 = PAE2,
+                          PAE3 = PAE3,
+                          PAE_interface = ct.score2,
+                          dimer_proba = 0)
+} else {
+  df_towrite = data.frame(PAE1 = PAE1,
+                          PAE2 = PAE2,
+                          PAE3 = PAE3,
+                          PAE_interface = ct.score2,
+                          dimer_proba = round(proba.all,5))
+}
 
 print(paste0(OUTPATH, "/", CODE, "_probability_scores.csv"))
 write.csv(df_towrite, paste0(getwd(), "/", OUTPATH, "/", CODE, "_probability_scores.csv"),
