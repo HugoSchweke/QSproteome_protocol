@@ -320,8 +320,12 @@ writeLines(pdbnodiso3, con = paste0(OUTPATH, "/", CODE, "_nodiso3.pdb"))
 write.csv(data.all.diso, paste0(OUTPATH, "/", CODE, "_diso_info.csv"),
           quote = F, row.names = F)
 
+cat("clashes: ", Nclash_res_int/length(n_con_int), "\n")
+cat("clashes: ", Nclash_res/nrow(pdb_dataframe_plddt), "\n")
+
+
 ## 3- A file with X column for all the PAE score etc
-if (Nclash_res_int/length(n_con_int) > 0.1 | Nclash_res/nrow(pdb_dataframe_plddt)>0.1) {
+if ((Nclash_res_int/length(n_con_int) > 0.1) | (Nclash_res/nrow(pdb_dataframe_plddt)>0.1)) {
   print("The model presents too many clashes, cannot be a homomer.dimer_proba set to 0\n")
   df_towrite = data.frame(PAE1 = PAE1,
                           PAE2 = PAE2,
@@ -335,6 +339,8 @@ if (Nclash_res_int/length(n_con_int) > 0.1 | Nclash_res/nrow(pdb_dataframe_plddt
                           PAE_interface = ct.score2,
                           dimer_proba = round(proba.all,5))
 }
+
+print(df_towrite)
 
 print(paste0(OUTPATH, "/", CODE, "_probability_scores.csv"))
 write.csv(df_towrite, paste0(getwd(), "/", OUTPATH, "/", CODE, "_probability_scores.csv"),
