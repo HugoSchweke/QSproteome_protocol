@@ -83,10 +83,10 @@ An example of ouput can be found in the directory *example_output*. Six outputs 
 
 **Main outputs**
 
-- A pdb file where residues are filtered out according of to the *nodiso1* definition (residues with a pLDDT score below 40 are filtered out)
-- A pdb file where residues are filtered out according of to the *nodiso2* definition (starting from the nodiso1 file, a median pLDDT score is computed, and residues with a pLDDT score
+- A pdb file where residues are filtered out according to the *nodiso1* definition (residues with a pLDDT score below 40 are filtered out)
+- A pdb file where residues are filtered out according to the *nodiso2* definition (starting from the nodiso1 file, a median pLDDT score is computed, and residues with a pLDDT score
 below 75 and below the median value are discarded.)
-- A pdb file where residues are filtered out according of to the *nodiso3* definition (Starting from the nodiso2 file, a single linkage clustering is applied on the contact matrix of the remaining residues and the largest cluster is retained, thus eliminating disconnected structural parts.)
+- A pdb file where residues are filtered out according to the *nodiso3* definition (Starting from the nodiso2 file, a single linkage clustering is applied on the contact matrix of the remaining residues and the largest cluster is retained, thus eliminating disconnected structural parts.)
 - a csv file that indicating which residues are filtered out following the *nodiso* definitions
   
 <details>
