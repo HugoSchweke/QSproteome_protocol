@@ -55,9 +55,9 @@ To enable symmetry detection and full size complexes reconstruction, AnAnaS and 
 
 - Install the Phenix software suite. You can download it here: [Link](https://phenix-online.org/download/)
 
-- Export the path to phenix in your bashrc:
+- Export the path to phenix.clashscore in your bashrc:
 ```bash
-cat "export PHENIX_CLASHSCORE=PATHTOPHENIX/build/bin/phenix.clashscore" >> ~/.bashrc
+echo "export PHENIX_CLASHSCORE=PATHTOPHENIX/build/bin/phenix.clashscore" >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -65,7 +65,7 @@ source ~/.bashrc
 
 - export the path to AnAnaS in your bashrc:
 ```bash
-cat "export ANANAS=PATHTOANANAS/bin/ananas" >> ~/.bashrc
+echo "export ANANAS=PATHTOANANAS/bin/ananas" >> ~/.bashrc
 source ~/.bashrc
 ```
 
