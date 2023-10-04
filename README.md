@@ -226,9 +226,9 @@ Now, let's have a look at the results. In the probability file:
 <details>
 <summary>P32907_V1_1_probability_scores.csv (.csv)</summary>
 <pre> 
-PAE1,PAE2,PAE3,PAE_interface,dimer_proba
-10.8,6.7,4,4.68,0.97528
- </pre>
+PAE1,PAE2,PAE3,PAE_interface,dimer_proba_pae3,dimer_proba_pae4,dimer_proba_con3,dimer_proba_pae4_con3,dimer_proba
+10.8,6.7,4,4.68,0.83878,0.57978,0.97528,0.89663,0.97528
+</pre>
 </details>
 
 We can see that the dimer probability (column dimer_proba) is 0.97528. The interaction predicted by AlphaFold is thus most likely a physiological one, thus *P32907_V1_1* forms a homomer. 
