@@ -1,6 +1,10 @@
 use strict;
 use POSIX;
-require("/media/elusers/users/hugo/15_alphafold/37_revision_Cell/general.pm");
+use FindBin qw($RealBin);
+
+# Add the directory containing the script to @INC
+use lib $RealBin;
+require("general.pm");
 
 
 my @aas = ("GLY", "ALA", "VAL", "LEU", "ILE", "SER", "THR", "ASP", "ASN", "LYS", "GLU", "GLN", "ARG", "HIS", "PHE", "CYS", "TRP", "TYR", "MET", "PRO");
