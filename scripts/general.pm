@@ -75,3 +75,5 @@ sub MEAN($){
     return $sum/($#{$array}+1);
   }
 }
+
+1;
