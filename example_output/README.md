@@ -45,4 +45,8 @@ Contains five probability scores.
 - PAE2 = PAE score of the nodiso2 residues
 - PAE3 = PAE score of the nodiso3 residues
 - PAE_interface = probability of the model to be a physiological homomer based on a logistic regression model using the PAE4 metric (mean PAE values of interchain contacts in the core structures).
-- dimer_proba = probability that the dimer is a physiological one.
+- dimer_proba_pae3 = probability that the dimer is a physiological one based on a logistic regression model using the PAE3 metric.
+- dimer_proba_pae4 = probability that the dimer is a physiological one based on a regression model using the PAE4 metric.
+- dimer_proba_con3 = probability that the dimer is a physiological one based on a regression model using the CON3 metric.
+- dimer_proba_pae4_con3 = probability that the dimer is a physiological one based on a regression model using a combination of the PAE4 and CON3 metric.
+- dimer_proba = probability that the dimer is a physiological one (highest of all dimer proba).
